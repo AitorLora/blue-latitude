@@ -76,9 +76,40 @@
     .nav-reserve:hover { background: var(--gold); color: var(--navy); }
     .nav-toggle {
       display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 4px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 101;
     }
-    .nav-toggle span { display: block; width: 22px; height: 1px; background: var(--cream); }
+    .nav-toggle span { display: block; width: 22px; height: 1px; background: var(--cream); transition: transform .3s ease, opacity .3s ease; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ━━━ MOBILE MENU ━━━ */
+    .mobile-menu {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+      background: rgba(10,22,36,.97);
+      backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
+      padding: 88px 40px 52px;
+      display: flex; flex-direction: column; gap: 48px;
+      border-bottom: 1px solid rgba(197,164,110,.12);
+      transform: translateY(-110%);
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+    .mobile-menu.open { transform: translateY(0); }
+    .mobile-links { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+    .mobile-links a {
+      font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300;
+      letter-spacing: .08em; color: var(--cream); text-decoration: none;
+      transition: color .3s;
+    }
+    .mobile-links a:hover { color: var(--gold); }
+    .mobile-reserve {
+      display: inline-block; align-self: flex-start;
+      font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border: 1px solid rgba(197,164,110,.45); padding: 14px 36px;
+      transition: background .35s, color .35s;
+    }
+    .mobile-reserve:hover { background: var(--gold); color: var(--navy); }
 
     /* ━━━ LANG SWITCHER ━━━ */
     .lang-switcher { display: flex; align-items: center; gap: 7px; }
@@ -366,11 +397,14 @@
       .g-item:nth-child(1) { grid-row:auto; }
       .g-fill { min-height:360px; }
     }
-    @media (max-width:768px) {
-      nav, nav.scrolled { padding:20px 24px; }
+    @media (max-width:960px) {
+      nav, nav.scrolled { padding:20px 36px; }
       .nav-links, .nav-reserve { display:none; }
       .nav-toggle { display:flex; }
       .lang-btn { font-size:.58rem; }
+    }
+    @media (max-width:768px) {
+      nav, nav.scrolled { padding:20px 24px; }
       .statement, .services, .experience-intro, .contact { padding:100px 28px; }
       footer { padding:48px 28px; flex-direction:column; align-items:flex-start; }
       .stats-row { gap:44px; }
@@ -405,6 +439,16 @@
     <a href="#contacto" class="nav-reserve" data-i18n="nav.book">Reservar</a>
     <button class="nav-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-links">
+      <li><a href="#servicios" data-i18n="nav.experiences">Experiencias</a></li>
+      <li><a href="#galeria" data-i18n="nav.mallorca">Mallorca</a></li>
+      <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="mobile-reserve" data-i18n="nav.book">Reservar</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="inicio">
@@ -745,6 +789,20 @@
     });
 
     applyLang(localStorage.getItem('bl-lang') || 'es');
+
+    /* ━━━ MOBILE MENU TOGGLE ━━━ */
+    const toggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        toggle.classList.remove('open');
+      });
+    });
 
     /* ━━━ SHIMMER LINES ━━━ */
     const shimmer = document.getElementById('shimmerContainer');
