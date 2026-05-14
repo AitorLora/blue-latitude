@@ -6,7 +6,7 @@
   <title>Blue Latitude — Mallorca</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -33,24 +33,30 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--navy); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
-    /* ━━━ NAV ━━━ */
+    /* ━━━ NAV (Estilo Isla Dinámica / Apple Glass) ━━━ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 32px 64px;
       display: flex; align-items: center; justify-content: space-between;
-      transition: padding .5s ease, background .5s ease, border-color .5s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      padding: 20px 64px;
-      background: rgba(12,26,39,.88);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-color: rgba(197,164,110,.12);
+      top: 20px;
+      left: 5%;
+      right: 5%;
+      width: 90%;
+      padding: 16px 40px;
+      background: rgba(12, 26, 39, 0.7);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
@@ -64,52 +70,53 @@
     .nav-links a {
       font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
       color: rgba(244,239,230,.6); text-decoration: none;
-      transition: color .3s;
+      transition: color .3s; font-weight: 500;
     }
     .nav-links a:hover { color: var(--gold); }
+
+    /* Botón estilo píldora Apple */
     .nav-reserve {
-      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--gold); text-decoration: none;
-      border: 1px solid rgba(197,164,110,.45); padding: 11px 28px;
-      transition: background .35s, color .35s;
+      font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+      background: var(--gold); color: var(--navy); text-decoration: none;
+      font-weight: 500;
+      border: none; padding: 12px 32px; border-radius: 50px;
+      transition: transform .35s, box-shadow .35s;
     }
-    .nav-reserve:hover { background: var(--gold); color: var(--navy); }
+    .nav-reserve:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(197, 164, 110, 0.3);
+    }
+
     .nav-toggle {
       display: none; flex-direction: column; gap: 5px;
       background: none; border: none; cursor: pointer; padding: 4px; z-index: 101;
     }
     .nav-toggle span { display: block; width: 22px; height: 1px; background: var(--cream); transition: transform .3s ease, opacity .3s ease; }
-    .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .nav-toggle.open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
     /* ━━━ MOBILE MENU ━━━ */
     .mobile-menu {
       position: fixed; top: 0; left: 0; right: 0; z-index: 99;
       background: rgba(10,22,36,.97);
       backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
-      padding: 88px 40px 52px;
+      padding: 100px 40px 52px;
       display: flex; flex-direction: column; gap: 48px;
-      border-bottom: 1px solid rgba(197,164,110,.12);
       transform: translateY(-110%);
       transition: transform .45s cubic-bezier(.4,0,.2,1);
     }
     .mobile-menu.open { transform: translateY(0); }
     .mobile-links { list-style: none; display: flex; flex-direction: column; gap: 28px; }
     .mobile-links a {
-      font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300;
-      letter-spacing: .08em; color: var(--cream); text-decoration: none;
-      transition: color .3s;
+      font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 500;
+      letter-spacing: -.02em; color: var(--cream); text-decoration: none;
     }
-    .mobile-links a:hover { color: var(--gold); }
+
     .mobile-reserve {
       display: inline-block; align-self: flex-start;
-      font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--gold); text-decoration: none;
-      border: 1px solid rgba(197,164,110,.45); padding: 14px 36px;
-      transition: background .35s, color .35s;
+      font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+      background: var(--gold); color: var(--navy); text-decoration: none;
+      font-weight: 500;
+      border-radius: 50px; padding: 16px 40px;
     }
-    .mobile-reserve:hover { background: var(--gold); color: var(--navy); }
 
     /* ━━━ LANG SWITCHER ━━━ */
     .lang-switcher { display: flex; align-items: center; gap: 7px; }
@@ -117,20 +124,16 @@
       background: none; border: none; cursor: pointer;
       font-family: 'Inter', sans-serif;
       font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(244,239,230,.38); padding: 3px 0; line-height: 1;
-      transition: color .3s;
+      color: rgba(244,239,230,.38); padding: 3px 0; line-height: 1; font-weight: 500;
     }
-    .lang-btn:hover { color: var(--gold-lt); }
     .lang-btn.active { color: var(--gold); }
-    .lang-sep { color: rgba(197,164,110,.25); font-size: .52rem; pointer-events: none; user-select: none; }
+    .lang-sep { color: rgba(197,164,110,.25); font-size: .52rem; }
 
     /* ━━━ HERO ━━━ */
     .hero {
       position: relative; height: 100vh; min-height: 640px;
       display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-      padding-top: 80px;   /* nav height */
-      padding-bottom: 140px; /* scroll indicator zone */
+      overflow: hidden; padding-top: 80px; padding-bottom: 140px;
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
@@ -138,29 +141,11 @@
         radial-gradient(ellipse 80% 60% at 15% 85%, rgba(30,103,153,.38) 0%, transparent 55%),
         radial-gradient(ellipse 60% 60% at 85% 10%, rgba(10,30,55,.7) 0%, transparent 50%),
         linear-gradient(160deg, #0C1A27 0%, #10243A 35%, #0E2545 65%, #0C1A27 100%);
+      animation: hero-scale 4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
-    .hero-shimmer { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
-    .shimmer-line {
-      position: absolute; left: 0; right: 0; height: 1px;
-      animation: shimmer-drift linear infinite;
-    }
-    @keyframes shimmer-drift {
-      0%   { transform: translateX(-15%) skewY(-.3deg); opacity: 0; }
-      15%  { opacity: 1; }
-      85%  { opacity: .6; }
-      100% { transform: translateX(15%) skewY(.3deg); opacity: 0; }
-    }
-    .hero-particles { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
-    .particle {
-      position: absolute; border-radius: 50%;
-      background: var(--gold-lt); opacity: 0;
-      animation: particle-rise linear infinite;
-    }
-    @keyframes particle-rise {
-      0%   { transform: translateY(110vh) scale(0); opacity: 0; }
-      8%   { opacity: .5; }
-      92%  { opacity: .25; }
-      100% { transform: translateY(-8vh) scale(2); opacity: 0; }
+    @keyframes hero-scale {
+      from { transform: scale(1.1); filter: blur(5px); }
+      to { transform: scale(1); filter: blur(0); }
     }
     .hero-content {
       position: relative; z-index: 2;
@@ -168,252 +153,270 @@
     }
     .hero-eyebrow {
       font-size: .62rem; letter-spacing: .5em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 36px;
-      opacity: 0; animation: anim-fade-down 1.1s ease .4s forwards;
+      color: var(--gold); margin-bottom: 24px; font-weight: 500;
+      opacity: 0; animation: anim-fade-up 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) .4s forwards;
     }
     .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300; font-size: clamp(5rem, 14vw, 11.5rem);
-      line-height: .88; color: var(--white); letter-spacing: -.02em;
-      opacity: 0; animation: anim-fade-up 1.4s ease .6s forwards;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: clamp(4rem, 12vw, 10rem);
+      line-height: .9; color: var(--white); letter-spacing: -.04em;
+      opacity: 0; animation: anim-fade-up 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) .6s forwards;
     }
     .hero-title-italic {
-      display: block; font-style: italic; color: var(--gold-lt);
-      font-size: clamp(4rem, 11vw, 9.5rem);
+      display: block; font-family: 'Cormorant Garamond', serif; font-style: italic;
+      color: var(--gold-lt); font-size: clamp(3.5rem, 10vw, 8.5rem); font-weight: 300;
+      letter-spacing: 0;
     }
     .hero-tagline {
       margin-top: 40px; font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
-      color: rgba(244,239,230,.45);
-      opacity: 0; animation: anim-fade-up 1.2s ease 1s forwards;
+      color: rgba(244,239,230,.6); font-weight: 500;
+      opacity: 0; animation: anim-fade-up 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 1s forwards;
     }
     .hero-scroll {
       position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
       z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 14px;
       opacity: 0; animation: anim-fade-in 1s ease 1.8s forwards;
     }
-    .hero-scroll-label { font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(197,164,110,.55); }
+    .hero-scroll-label { font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(197,164,110,.8); font-weight: 500; }
     .hero-scroll-line {
-      width: 1px; height: 64px;
+      width: 2px; height: 64px; border-radius: 2px;
       background: linear-gradient(to bottom, var(--gold), transparent);
       animation: pulse-line 2.4s ease-in-out infinite;
     }
-    @keyframes pulse-line {
-      0%, 100% { opacity: .35; } 50% { opacity: 1; }
-    }
+    @keyframes pulse-line { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
 
     /* ━━━ STATEMENT ━━━ */
     .statement {
       background: var(--cream); padding: 150px 64px;
       text-align: center; position: relative; overflow: hidden;
     }
-    .statement::after {
-      content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-    }
     .section-eyebrow {
       display: block; font-size: .62rem; letter-spacing: .48em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 48px;
+      color: var(--gold); margin-bottom: 48px; font-weight: 500;
     }
     .statement-body {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300; font-size: clamp(2.2rem, 4.5vw, 4.2rem);
-      line-height: 1.18; color: var(--navy); max-width: 860px; margin: 0 auto;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500; font-size: clamp(2rem, 4vw, 3.8rem);
+      letter-spacing: -.02em;
+      line-height: 1.18; color: var(--navy); max-width: 900px; margin: 0 auto;
     }
-    .statement-body em { font-style: italic; color: var(--ocean); }
+    .statement-body em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ocean); font-size: 1.1em; font-weight: 300;}
     .statement-rule {
-      width: 1px; height: 90px;
+      width: 2px; height: 90px; border-radius: 2px;
       background: linear-gradient(to bottom, transparent, var(--gold), transparent);
       margin: 72px auto;
     }
     .stats-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 80px; }
-    .stat { text-align: center; }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.8rem; font-weight: 300; line-height: 1; color: var(--navy); }
-    .stat-unit { font-size: 1.8rem; }
-    .stat-lbl { margin-top: 10px; font-size: .6rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+    .stat-num { font-family: 'Inter', sans-serif; font-size: 4rem; font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--navy); }
+    .stat-lbl { margin-top: 15px; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
 
-    /* ━━━ SERVICES ━━━ */
+    /* ━━━ SERVICES (Bento Box Estilo Apple) ━━━ */
     .services { background: var(--navy); padding: 150px 64px; }
     .section-header { text-align: center; margin-bottom: 80px; }
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300; font-size: clamp(2.6rem, 5vw, 4rem);
-      line-height: 1.1; color: var(--white);
+      font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -.03em;
+      font-size: clamp(2.6rem, 5vw, 4.5rem); line-height: 1.1; color: var(--white);
     }
+
     .services-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; max-width: 1240px; margin: 0 auto;
-      background: rgba(197,164,110,.1);
+      gap: 24px; max-width: 1240px; margin: 0 auto;
+      background: transparent;
     }
     .svc {
-      background: var(--navy-mid); padding: 60px 48px;
+      background-color: rgba(10, 18, 30, 0.72);
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 60px 48px;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       display: flex; flex-direction: column; min-height: 500px;
       position: relative; overflow: hidden; cursor: pointer;
-      transition: background .5s;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.4s, border-color 0.4s;
     }
-    .svc:hover { background: var(--navy-soft); }
-    .svc::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      transform: scaleX(0); transform-origin: left; transition: transform .5s;
+    .svc:hover {
+      background-color: rgba(20, 38, 58, 0.55);
+      transform: translateY(-8px);
+      border-color: rgba(197,164,110,.3);
     }
-    .svc:hover::after { transform: scaleX(1); }
     .svc-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5.5rem; font-weight: 300; line-height: 1;
-      color: rgba(197,164,110,.1); transition: color .5s;
+      font-family: 'Inter', sans-serif; font-size: 4rem; font-weight: 700; letter-spacing: -.04em;
+      line-height: 1; color: rgba(255,255,255,.05); transition: color .5s;
     }
-    .svc:hover .svc-num { color: rgba(197,164,110,.2); }
+    .svc:hover .svc-num { color: rgba(197,164,110,.15); }
     .svc-icon { margin-top: auto; margin-bottom: 28px; color: var(--gold); transition: transform .4s; }
-    .svc:hover .svc-icon { transform: translateY(-4px); }
-    .svc-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--white); margin-bottom: 16px; line-height: 1.15; }
-    .svc-desc { font-size: .82rem; line-height: 1.85; color: rgba(244,239,230,.48); margin-bottom: 36px; }
-    .svc-price { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--gold); letter-spacing: .05em; margin-bottom: 28px; }
+    .svc:hover .svc-icon { transform: translateY(-4px) scale(1.1); }
+    .svc-name { font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 600; letter-spacing: -.02em; color: var(--white); margin-bottom: 16px; line-height: 1.15; }
+    .svc-desc { font-size: .9rem; line-height: 1.7; color: rgba(244,239,230,.6); margin-bottom: 36px; }
+    .svc-price { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500; color: var(--gold); margin-bottom: 28px; }
     .svc-cta {
       display: inline-flex; align-items: center; gap: 10px;
-      font-size: .62rem; letter-spacing: .28em; text-transform: uppercase;
-      color: var(--gold); text-decoration: none; transition: gap .35s;
+      font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600;
+      color: var(--white); text-decoration: none; transition: gap .35s, color .3s;
     }
-    .svc-cta::after { content: '→'; font-size: .85rem; transition: transform .35s; }
-    .svc:hover .svc-cta { gap: 16px; }
+    .svc-cta::after { content: '→'; font-size: .85rem; color: var(--gold); transition: transform .35s; }
+    .svc:hover .svc-cta { gap: 16px; color: var(--gold); }
     .svc:hover .svc-cta::after { transform: translateX(4px); }
 
     /* ━━━ MARQUEE ━━━ */
     .marquee-section {
-      background: var(--navy-mid); padding: 80px 0; overflow: hidden;
-      border-top: 1px solid rgba(197,164,110,.1);
-      border-bottom: 1px solid rgba(197,164,110,.1);
+      background: var(--navy-mid); padding: 60px 0; overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,.03); border-bottom: 1px solid rgba(255,255,255,.03);
     }
-    .marquee-track {
-      display: flex; gap: 60px; white-space: nowrap;
-      animation: marquee-scroll 22s linear infinite;
-    }
+    .marquee-track { display: flex; gap: 60px; white-space: nowrap; animation: marquee-scroll 22s linear infinite; }
     .marquee-word {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4.5rem; font-weight: 300; font-style: italic;
-      color: transparent; -webkit-text-stroke: 1px rgba(197,164,110,.22);
-      flex-shrink: 0;
+      font-family: 'Inter', sans-serif; font-size: 4rem; font-weight: 700; letter-spacing: -.02em;
+      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.15); flex-shrink: 0;
     }
-    .marquee-dot { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; color: rgba(197,164,110,.2); flex-shrink: 0; }
+    .marquee-dot { font-family: 'Inter', sans-serif; font-size: 4rem; color: var(--gold); flex-shrink: 0; }
     @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ━━━ GALLERY ━━━ */
+    /* ━━━ GALLERY (Bento Box Redondeado) ━━━ */
     .experience-intro { background: var(--cream); padding: 130px 64px; text-align: center; }
-    .exp-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.6rem, 5vw, 4.2rem); color: var(--navy); line-height: 1.1; margin-bottom: 28px; }
-    .exp-subtitle { font-size: .82rem; color: rgba(12,26,39,.5); line-height: 1.9; max-width: 500px; margin: 0 auto; }
+    .exp-title { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -.03em; font-size: clamp(2.6rem, 5vw, 4.5rem); color: var(--navy); line-height: 1.1; margin-bottom: 28px; }
+    .exp-subtitle { font-size: .9rem; color: rgba(12,26,39,.6); line-height: 1.7; max-width: 600px; margin: 0 auto; }
 
-    .gallery { display: grid; grid-template-columns: 5fr 4fr; grid-template-rows: 55vh 40vh; }
-    .g-item { position: relative; overflow: hidden; background: var(--navy-mid); }
+    .gallery {
+      display: grid; grid-template-columns: 5fr 4fr; grid-template-rows: 55vh 40vh;
+      gap: 24px; padding: 0 64px 100px; background: var(--cream);
+    }
+    .g-item { position: relative; overflow: hidden; background: var(--navy-mid); border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
     .g-item:nth-child(1) { grid-row: 1 / 3; }
-    .g-fill { width: 100%; height: 100%; min-height: 300px; position: relative; overflow: hidden; transition: transform 6s ease; }
-    .g-item:hover .g-fill { transform: scale(1.04); }
-    .g-fill.ocean-1 {
-      background:
-        radial-gradient(ellipse at 30% 60%, rgba(30,103,153,.6) 0%, transparent 55%),
-        linear-gradient(160deg, #081828 0%, #0E304E 40%, #1A6B8A 80%, #0C2A42 100%);
-    }
-    .g-fill.ocean-2 {
-      background:
-        radial-gradient(ellipse at 70% 40%, rgba(46,125,175,.5) 0%, transparent 55%),
-        linear-gradient(135deg, #122038 0%, #1E5070 50%, #0E2840 100%);
-    }
-    .g-fill.ocean-3 {
-      background:
-        radial-gradient(ellipse at 40% 70%, rgba(20,80,130,.6) 0%, transparent 55%),
-        linear-gradient(150deg, #0A1A2C 0%, #163454 40%, #1A5878 80%, #0A1A2C 100%);
-    }
-    .g-fill::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,.025) 28px, rgba(255,255,255,.025) 29px);
-    }
+    .g-fill { width: 100%; height: 100%; min-height: 300px; position: relative; overflow: hidden; transition: transform 6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .g-item:hover .g-fill { transform: scale(1.05); }
+    .g-fill.ocean-1 { background: url('assets/beaches/cala-pi.jpg') center center / cover no-repeat; }
+    .g-fill.ocean-2 { background: url('assets/motos/excursion-moto-de-agua-mallorca-1.png') center center / cover no-repeat; }
+    .g-fill.ocean-3 { background: url('assets/boats/gecko-barco.jpeg') center center / cover no-repeat; }
+
     .g-caption {
       position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 40px 44px 44px;
-      background: linear-gradient(to top, rgba(8,18,32,.85) 0%, transparent 100%);
+      padding: 50px 40px 40px;
+      background: linear-gradient(to top, rgba(8,18,32,.9) 0%, transparent 100%);
     }
-    .g-caption-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 300; color: var(--white); margin-bottom: 6px; line-height: 1.2; }
-    .g-caption-sub { font-size: .6rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(197,164,110,.75); }
-    .g-placeholder-hint { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
-    .g-placeholder-hint span { display: block; font-size: .6rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.18); }
-    .g-placeholder-hint strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: .9rem; font-weight: 300; color: rgba(255,255,255,.2); margin-top: 6px; }
+    .g-caption-title { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 600; letter-spacing: -.02em; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
+    .g-caption-sub { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; color: var(--gold); }
+
 
     /* ━━━ CONTACT ━━━ */
     .contact { background: var(--cream); padding: 150px 64px; }
     .contact-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: start; }
-    .contact-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 1.08; color: var(--navy); margin-bottom: 36px; }
-    .contact-para { font-size: .82rem; line-height: 1.95; color: rgba(12,26,39,.52); max-width: 400px; margin-bottom: 52px; }
+    .contact-heading { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -.03em; font-size: clamp(2.4rem, 4vw, 4rem); line-height: 1.05; color: var(--navy); margin-bottom: 36px; }
+    .contact-para { font-size: .95rem; line-height: 1.8; color: rgba(12,26,39,.6); max-width: 400px; margin-bottom: 52px; font-weight: 400;}
     .contact-items { display: flex; flex-direction: column; gap: 32px; }
-    .contact-item-lbl { font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
-    .contact-item-val { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--navy); }
-    .contact-form { display: flex; flex-direction: column; gap: 28px; }
+    .contact-item-lbl { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--gold); margin-bottom: 6px; }
+    .contact-item-val { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 500; letter-spacing: -.02em; color: var(--navy); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 28px; background: var(--white); padding: 48px; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
     .f-group { display: flex; flex-direction: column; gap: 8px; }
-    .f-label { font-size: .58rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(12,26,39,.4); }
-    .f-input, .f-select, .f-textarea {
-      background: transparent; border: none; border-bottom: 1px solid rgba(12,26,39,.18);
-      padding: 12px 0; font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 300;
+    .f-label { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 600; color: var(--muted); }
+    .f-input, .f-textarea {
+      background: transparent; border: none; border-bottom: 2px solid rgba(12,26,39,.1);
+      padding: 12px 0; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500;
       color: var(--navy); outline: none; transition: border-color .3s; width: 100%;
     }
-    .f-input:focus, .f-select:focus, .f-textarea:focus { border-color: var(--gold); }
-    .f-select { cursor: pointer; -webkit-appearance: none; }
+    .f-input:focus, .f-textarea:focus { border-color: var(--gold); }
     .f-textarea { resize: none; height: 78px; }
-    .f-btn {
-      margin-top: 12px; padding: 16px 52px; align-self: flex-start;
-      background: var(--navy); color: var(--cream);
-      font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
-      border: 1px solid var(--navy); cursor: pointer; transition: background .4s, color .4s;
+
+    /* Custom dropdown */
+    .f-dropdown { position: relative; }
+    .f-dropdown-trigger {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 2px solid rgba(12,26,39,.1); padding: 12px 0; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500;
+      color: rgba(12,26,39,.35); transition: border-color .3s; user-select: none;
     }
-    .f-btn:hover { background: transparent; color: var(--navy); }
+    .f-dropdown-trigger.has-value { color: var(--navy); }
+    .f-dropdown.open .f-dropdown-trigger { border-color: var(--gold); }
+    .f-dropdown-arrow {
+      width: 8px; height: 8px; flex-shrink: 0;
+      border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted);
+      transform: rotate(45deg) translateY(-2px); transition: transform .3s;
+    }
+    .f-dropdown.open .f-dropdown-arrow { transform: rotate(-135deg) translateY(-2px); }
+    .f-dropdown-options {
+      position: absolute; top: calc(100% + 10px); left: -20px; right: -20px;
+      background: var(--white); border-radius: 20px;
+      box-shadow: 0 24px 64px rgba(12,26,39,.13), 0 4px 16px rgba(12,26,39,.07);
+      overflow: hidden; z-index: 50;
+      opacity: 0; transform: translateY(-6px) scale(.98); pointer-events: none;
+      transition: opacity .22s cubic-bezier(0.2,0.8,0.2,1), transform .22s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .f-dropdown.open .f-dropdown-options { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+    .f-dropdown-option {
+      padding: 15px 22px; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: .9rem; font-weight: 500;
+      color: var(--navy); display: flex; align-items: center; gap: 12px;
+      transition: background .18s, color .18s; border-bottom: 1px solid rgba(12,26,39,.05);
+    }
+    .f-dropdown-option:last-child { border-bottom: none; }
+    .f-dropdown-option:hover { background: rgba(197,164,110,.07); color: var(--gold); }
+    .f-dropdown-option.selected { color: var(--gold); }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 40px;
+      padding: 14px 32px; border-radius: 50px;
+      background: #25D366; color: #fff; text-decoration: none;
+      font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .wa-btn:hover { transform: scale(1.04); box-shadow: 0 10px 24px rgba(37,211,102,.3); }
+
+    /* Botón Formulario Píldora Apple */
+    .f-btn {
+      margin-top: 24px; padding: 18px 48px; align-self: flex-start;
+      background: var(--navy); color: var(--cream); border-radius: 50px;
+      font-family: 'Inter', sans-serif; font-size: .75rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+      border: none; cursor: pointer; transition: transform .3s, box-shadow .3s;
+    }
+    .f-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(12,26,39,.15); }
 
     /* ━━━ FOOTER ━━━ */
     footer {
-      background: var(--navy-mid); padding: 60px 64px;
+      background: var(--navy); padding: 60px 64px;
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 28px;
-      border-top: 1px solid rgba(197,164,110,.12);
     }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 300; letter-spacing: .3em; text-transform: uppercase; color: var(--white); }
-    .footer-logo em { font-style: italic; color: var(--gold); }
+    .footer-logo { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; text-transform: uppercase; color: var(--white); }
+    .footer-logo em { color: var(--gold); font-style: normal; }
     .footer-links { display: flex; gap: 36px; }
-    .footer-links a { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(244,239,230,.35); text-decoration: none; transition: color .3s; }
+    .footer-links a { font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,239,230,.5); text-decoration: none; transition: color .3s; }
     .footer-links a:hover { color: var(--gold); }
-    .footer-copy { font-size: .65rem; color: rgba(244,239,230,.25); letter-spacing: .08em; }
+    .footer-copy { font-size: .7rem; font-weight: 400; color: rgba(244,239,230,.3); letter-spacing: .05em; }
 
     /* ━━━ ANIMATIONS ━━━ */
-    @keyframes anim-fade-up   { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes anim-fade-down { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes anim-fade-in   { from { opacity:0; } to { opacity:1; } }
+    @keyframes anim-fade-up {
+      from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    @keyframes anim-fade-in { from { opacity: 0; } to { opacity: 1; } }
 
-    .sr       { opacity:0; transform:translateY(44px); transition:opacity .95s ease,transform .95s ease; }
-    .sr.in    { opacity:1; transform:translateY(0); }
-    .sr-scale { opacity:0; transform:scale(.97); transition:opacity .95s ease,transform .95s ease; }
-    .sr-scale.in { opacity:1; transform:scale(1); }
-    .d1 { transition-delay:.1s; }
-    .d2 { transition-delay:.22s; }
-    .d3 { transition-delay:.38s; }
+    .sr { opacity: 0; transform: translateY(40px); filter: blur(8px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1s ease; }
+    .sr.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .sr-scale { opacity: 0; transform: scale(0.95); filter: blur(10px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1s ease; }
+    .sr-scale.in { opacity: 1; transform: scale(1); filter: blur(0); }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
 
     /* ━━━ RESPONSIVE ━━━ */
-    @media (max-width:1100px) {
-      .services-grid { grid-template-columns:1fr; max-width:520px; margin:0 auto; }
-      .contact-grid { grid-template-columns:1fr; gap:64px; }
-      .gallery { grid-template-columns:1fr; grid-template-rows:auto; }
-      .g-item:nth-child(1) { grid-row:auto; }
-      .g-fill { min-height:360px; }
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: 1fr; max-width: 520px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 64px; }
+      .gallery { grid-template-columns: 1fr; grid-template-rows: auto; padding: 0 32px 80px; }
+      .g-item:nth-child(1) { grid-row: auto; }
+      .g-fill { min-height: 360px; }
     }
-    @media (max-width:960px) {
-      nav, nav.scrolled { padding:20px 36px; }
-      .nav-links, .nav-reserve { display:none; }
-      .nav-toggle { display:flex; }
-      .lang-btn { font-size:.58rem; }
+    @media (max-width: 960px) {
+      nav { padding: 20px 36px; }
+      nav.scrolled { width: 94%; left: 3%; right: 3%; padding: 12px 24px; }
+      .nav-links, .nav-reserve { display: none; }
+      .nav-toggle { display: flex; }
+      .lang-btn { font-size: .58rem; }
     }
-    @media (max-width:768px) {
-      nav, nav.scrolled { padding:20px 24px; }
-      .statement, .services, .experience-intro, .contact { padding:100px 28px; }
-      footer { padding:48px 28px; flex-direction:column; align-items:flex-start; }
-      .stats-row { gap:44px; }
-      .marquee-word, .marquee-dot { font-size:2.8rem; }
-    }
-    @media (max-height:700px) {
-      .hero-title { font-size: clamp(3.5rem, 10vw, 7rem); }
-      .hero-title-italic { font-size: clamp(2.8rem, 8vw, 5.8rem); }
-      .hero { padding-top:60px; padding-bottom:120px; }
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .statement, .services, .experience-intro, .contact { padding: 100px 28px; }
+      .contact-form { padding: 32px 24px; }
+      footer { padding: 48px 28px; flex-direction: column; align-items: flex-start; }
+      .stats-row { gap: 44px; }
+      .marquee-word, .marquee-dot { font-size: 2.5rem; }
     }
   </style>
 </head>
@@ -453,18 +456,16 @@
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-bg"></div>
-    <div class="hero-shimmer" id="shimmerContainer"></div>
-    <div class="hero-particles" id="particleContainer"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow" data-i18n="hero.eyebrow">Mallorca · Islas Baleares · Mediterráneo</p>
+      <p class="hero-eyebrow">Mallorca · Islas Baleares · Mediterráneo</p>
       <h1 class="hero-title">
         Blue
         <span class="hero-title-italic">Latitude</span>
       </h1>
-      <p class="hero-tagline" data-i18n="hero.tagline">La experiencia definitiva en el mar</p>
+      <p class="hero-tagline">La experiencia definitiva en el mar</p>
     </div>
     <div class="hero-scroll">
-      <span class="hero-scroll-label" data-i18n="hero.scroll">Descubrir</span>
+      <span class="hero-scroll-label">Descubrir</span>
       <div class="hero-scroll-line"></div>
     </div>
   </section>
@@ -474,20 +475,20 @@
     <span class="section-eyebrow sr" data-i18n="statement.eyebrow">Mallorca desde dentro</span>
     <h2 class="statement-body sr d1" data-i18n-html="statement.body">
       No vendemos servicios.<br>
-      Creamos <em>momentos</em> que<br>el Mediterráneo guarda para siempre.
+      Creamos <em>momentos</em> que el<br>Mediterráneo guarda para siempre.
     </h2>
     <div class="statement-rule sr d2"></div>
     <div class="stats-row">
       <div class="stat sr d1">
-        <div class="stat-num">[NUM]</div>
+        <div class="stat-num">15</div>
         <p class="stat-lbl" data-i18n="statement.stat1">Años en Mallorca</p>
       </div>
       <div class="stat sr d2">
-        <div class="stat-num">[NUM]<span class="stat-unit">+</span></div>
+        <div class="stat-num">5k+</div>
         <p class="stat-lbl" data-i18n="statement.stat2">Experiencias entregadas</p>
       </div>
       <div class="stat sr d3">
-        <div class="stat-num">[NUM]</div>
+        <div class="stat-num">12</div>
         <p class="stat-lbl" data-i18n="statement.stat3">Embarcaciones en flota</p>
       </div>
     </div>
@@ -501,10 +502,10 @@
     </div>
     <div class="services-grid">
 
-      <div class="svc sr d1">
+      <div class="svc sr d1" style="background: linear-gradient(rgba(8,16,26,.72), rgba(8,16,26,.65)), url('assets/motos/excursion-moto-de-agua-mallorca-1.png') center/cover no-repeat;">
         <div class="svc-num">01</div>
         <div class="svc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="40" height="40" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 26c4-3 8-4 13-4s9 1 13 4"/>
             <path d="M10 26V20c0-2.5 2.5-4 5-5l5-2.5c2-.5 4 .5 5 2.5l1.5 3c0 2.5-2.5 5-5 6.5"/>
             <circle cx="12" cy="14" r="2.5"/>
@@ -512,34 +513,34 @@
           </svg>
         </div>
         <h3 class="svc-name" data-i18n="svc1.name">Motos de Agua</h3>
-        <p class="svc-desc" data-i18n="svc1.desc">Adrenalina mediterránea en estado puro. Rutas exclusivas a calas secretas que ningún mapa recoge. Una vivencia que el Mediterráneo grabará en tu memoria para siempre.</p>
-        <div class="svc-price" data-i18n="svc1.price">Desde [PRECIO] € / hora</div>
+        <p class="svc-desc" data-i18n="svc1.desc">Adrenalina mediterránea en estado puro. Rutas exclusivas a calas secretas que ningún mapa recoge. Una vivencia inolvidable.</p>
+        <div class="svc-price" data-i18n="svc1.price">Desde 150€ / hora</div>
         <a href="#contacto" class="svc-cta" data-i18n="svc1.cta">Reservar ahora</a>
       </div>
 
-      <div class="svc sr d2">
+      <div class="svc sr d2" style="background: linear-gradient(rgba(8,16,26,.72), rgba(8,16,26,.65)), url('assets/boats/ancora-barco.jpeg') center/cover no-repeat;">
         <div class="svc-num">02</div>
         <div class="svc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="40" height="40" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M2 28h32M5 28l4-10h18l4 10M18 18V9M11 18l7-9 7 9M9 28v-3M27 28v-3"/>
           </svg>
         </div>
         <h3 class="svc-name" data-i18n="svc2.name">Embarcaciones</h3>
-        <p class="svc-desc" data-i18n="svc2.desc">Vive Mallorca desde el agua. Cada travesía es una historia propia: calas vírgenes, horizontes abiertos y la libertad que solo el Mediterráneo puede regalarte.</p>
-        <div class="svc-price" data-i18n="svc2.price">Desde [PRECIO] € / día</div>
+        <p class="svc-desc" data-i18n="svc2.desc">Vive Mallorca desde el agua. Cada travesía es una historia propia: calas vírgenes, horizontes abiertos y pura libertad.</p>
+        <div class="svc-price" data-i18n="svc2.price">Desde 800€ / día</div>
         <a href="#contacto" class="svc-cta" data-i18n="svc2.cta">Vivir la experiencia</a>
       </div>
 
-      <div class="svc sr d3">
+      <div class="svc sr d3" style="background: linear-gradient(rgba(8,16,26,.72), rgba(8,16,26,.65)), url('assets/beaches/es-trenc.jpg') center/cover no-repeat;">
         <div class="svc-num">03</div>
         <div class="svc-icon">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="40" height="40" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="18" cy="18" r="14"/>
             <path d="M18 4a22 11 0 0 1 0 28M4 18h28M6 12h24M6 24h24"/>
           </svg>
         </div>
-        <h3 class="svc-name" data-i18n="svc3.name">Experiencia Completa</h3>
-        <p class="svc-desc" data-i18n="svc3.desc">Tú dices cuándo. Nosotros nos encargamos de todo lo demás. Rutas, catering a bordo, calas privadas, traslados. La versión definitiva de Mallorca.</p>
+        <h3 class="svc-name" data-i18n="svc3.name">Experiencia Premium</h3>
+        <p class="svc-desc" data-i18n="svc3.desc">Tú dices cuándo. Nosotros nos encargamos de todo: rutas, catering a bordo, calas privadas y traslados. Mallorca en su mejor versión.</p>
         <div class="svc-price" data-i18n="svc3.price">A medida — contáctanos</div>
         <a href="#contacto" class="svc-cta" data-i18n="svc3.cta">Diseñar mi experiencia</a>
       </div>
@@ -552,11 +553,11 @@
     <div class="marquee-track">
       <span class="marquee-word">Mallorca</span><span class="marquee-dot">·</span>
       <span class="marquee-word" data-i18n="marquee.med">Mediterráneo</span><span class="marquee-dot">·</span>
-      <span class="marquee-word" data-i18n="marquee.luxury">Luxury</span><span class="marquee-dot">·</span>
+      <span class="marquee-word" data-i18n="marquee.luxury">Premium</span><span class="marquee-dot">·</span>
       <span class="marquee-word">Blue Latitude</span><span class="marquee-dot">·</span>
       <span class="marquee-word">Mallorca</span><span class="marquee-dot">·</span>
       <span class="marquee-word" data-i18n="marquee.med">Mediterráneo</span><span class="marquee-dot">·</span>
-      <span class="marquee-word" data-i18n="marquee.luxury">Luxury</span><span class="marquee-dot">·</span>
+      <span class="marquee-word" data-i18n="marquee.luxury">Premium</span><span class="marquee-dot">·</span>
       <span class="marquee-word">Blue Latitude</span><span class="marquee-dot">·</span>
     </div>
   </div>
@@ -570,14 +571,9 @@
     </div>
     <div class="gallery">
       <div class="g-item sr-scale">
-        <div class="g-fill ocean-1">
-          <div class="g-placeholder-hint">
-            <span>Pon aquí tus fotos</span>
-            <strong>assets/ → imagen principal</strong>
-          </div>
-        </div>
+        <div class="g-fill ocean-1"></div>
         <div class="g-caption">
-          <p class="g-caption-title" data-i18n="gallery.cap1t">El Mediterráneo en su estado más puro</p>
+          <p class="g-caption-title" data-i18n="gallery.cap1t">El Mediterráneo en estado puro</p>
           <span class="g-caption-sub" data-i18n="gallery.cap1s">Calas exclusivas · Mallorca</span>
         </div>
       </div>
@@ -592,8 +588,7 @@
         <div class="g-fill ocean-3"></div>
         <div class="g-caption">
           <p class="g-caption-title" data-i18n="gallery.cap3t">Embarcaciones Premium</p>
-          <span class="g-caption-sub" data-i18n="gallery.cap3s">Tu flota · Tu ritmo · Tu Mallorca</span>
-        </div>
+          <span class="g-caption-sub" data-i18n="gallery.cap3s">Tu flota · Tu ritmo</span>
         </div>
       </div>
     </div>
@@ -608,19 +603,25 @@
         <p class="contact-para sr d2" data-i18n="contact.para">Cuéntanos lo que tienes en mente y nosotros nos encargamos del resto. Mallorca es grande, pero nosotros ya la conocemos entera.</p>
         <div class="contact-items sr d3">
           <div>
-            <p class="contact-item-lbl" data-i18n="contact.phone_lbl">Teléfono</p>
-            <p class="contact-item-val">+34 660 59 12 78</p>
+            <p class="contact-item-lbl">Teléfono · WhatsApp</p>
+            <a href="tel:+34660591278" class="contact-item-val" style="text-decoration:none; color:var(--navy);">+34 660 59 12 78</a>
           </div>
           <div>
-            <p class="contact-item-lbl" data-i18n="contact.email_lbl">Email</p>
-            <p class="contact-item-val">[TU EMAIL AQUÍ]</p>
+            <p class="contact-item-lbl">Email</p>
+            <p class="contact-item-val">hello@bluelatitude.com</p>
           </div>
           <div>
-            <p class="contact-item-lbl" data-i18n="contact.location_lbl">Ubicación</p>
+            <p class="contact-item-lbl">Ubicación</p>
             <p class="contact-item-val">Mallorca, Islas Baleares</p>
           </div>
         </div>
+        <a href="https://wa.me/34660591278?text=Hola%2C%20me%20interesa%20reservar%20una%20experiencia%20con%20Blue%20Latitude." target="_blank" class="wa-btn sr d3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chatear por WhatsApp
+        </a>
       </div>
+
+      <!-- FORMULARIO -->
       <form class="contact-form sr d2" onsubmit="return false;">
         <div class="f-group">
           <label class="f-label" data-i18n="form.name_lbl">Tu nombre</label>
@@ -631,20 +632,25 @@
           <input type="email" class="f-input" placeholder="tu@email.com">
         </div>
         <div class="f-group">
-          <label class="f-label" data-i18n="form.service_lbl">¿Qué experiencia buscas?</label>
-          <select class="f-select">
-            <option value="" disabled selected data-i18n="form.service_default">Selecciona una opción</option>
-            <option data-i18n="form.opt1">Motos de agua</option>
-            <option data-i18n="form.opt2">Alquiler de embarcación</option>
-            <option data-i18n="form.opt3">Experiencia completa</option>
-            <option data-i18n="form.opt4">Quiero más información</option>
-          </select>
+          <label class="f-label">¿Qué experiencia buscas?</label>
+          <div class="f-dropdown" id="serviceDropdown">
+            <div class="f-dropdown-trigger" id="dropdownTrigger">
+              <span id="dropdownLabel">Selecciona una opción</span>
+              <div class="f-dropdown-arrow"></div>
+            </div>
+            <div class="f-dropdown-options" id="dropdownOptions">
+              <div class="f-dropdown-option" data-value="motos">🏄 Motos de agua</div>
+              <div class="f-dropdown-option" data-value="embarcacion">⛵ Alquiler de embarcación</div>
+              <div class="f-dropdown-option" data-value="premium">✦ Experiencia completa</div>
+              <div class="f-dropdown-option" data-value="info">💬 Quiero más información</div>
+            </div>
+          </div>
         </div>
         <div class="f-group">
           <label class="f-label" data-i18n="form.msg_lbl">Cuéntanos más</label>
           <textarea class="f-textarea" data-i18n-ph="form.msg_ph" placeholder="Fecha, número de personas, lo que imagines…"></textarea>
         </div>
-        <button type="submit" class="f-btn" data-i18n="form.submit">Enviar consulta</button>
+        <button type="submit" class="f-btn" id="formSubmitBtn">Enviar solicitud</button>
       </form>
     </div>
   </section>
@@ -653,252 +659,66 @@
   <footer>
     <div class="footer-logo">Blue<em>·</em>Latitude</div>
     <div class="footer-links">
-      <a href="#servicios" data-i18n="footer.experiences">Experiencias</a>
-      <a href="#galeria" data-i18n="footer.gallery">Galería</a>
-      <a href="#contacto" data-i18n="footer.contact">Contacto</a>
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Experiencias</a>
+      <a href="#galeria">Mallorca</a>
     </div>
-    <p class="footer-copy" data-i18n="footer.copy">© 2026 Blue Latitude · Mallorca</p>
+    <div class="footer-copy">© 2024 Blue Latitude. Todos los derechos reservados.</div>
   </footer>
 
   <script>
-  (function() {
-
-    /* ━━━ I18N ━━━ */
-    const T = {
-      es: {
-        nav: { experiences:'Experiencias', mallorca:'Mallorca', contact:'Contacto', book:'Reservar' },
-        hero: { eyebrow:'Mallorca · Islas Baleares · Mediterráneo', tagline:'La experiencia definitiva en el mar', scroll:'Descubrir' },
-        statement: {
-          eyebrow:'Mallorca desde dentro',
-          body:'No vendemos servicios.<br>Creamos <em>momentos</em> que<br>el Mediterráneo guarda para siempre.',
-          stat1:'Años en Mallorca', stat2:'Experiencias entregadas', stat3:'Embarcaciones en flota'
-        },
-        services: { eyebrow:'Lo que ofrecemos', title:'Todo lo que el mar<br>puede darte, aquí.' },
-        svc1: { name:'Motos de Agua', desc:'Sentir el viento salado y la velocidad del Mediterráneo bajo los pies. Llevamos años descubriendo los rincones más inaccesibles de Mallorca para que tu primer instante en el mar sea también el más memorable.', price:'Desde [PRECIO] € / hora', cta:'Reservar ahora' },
-        svc2: { name:'Embarcaciones', desc:'Una embarcación no es solo un medio de transporte: es el punto de partida de una historia que tú decides. Cada barco de nuestra flota ha sido elegido con el mismo criterio con el que elegimos los destinos: que dejen huella.', price:'Desde [PRECIO] € / día', cta:'Vivir la experiencia' },
-        svc3: { name:'Experiencia Completa', desc:'Existe un Mallorca que no aparece en ninguna guía. Lo hemos construido cala a cala, atardecer a atardecer. Ponemos todo ese conocimiento al servicio de una única jornada: la tuya.', price:'A medida — contáctanos', cta:'Diseñar mi experiencia' },
-        marquee: { med:'Mediterráneo', luxury:'Luxury' },
-        gallery: {
-          eyebrow:'El escenario', title:'Mallorca como nunca<br>la has vivido.', subtitle:'El mar tiene la capacidad de redimensionar el tiempo. Aquí, un día puede contener todo lo que merece recordarse. Nosotros nos encargamos de que así sea.',
-          cap1t:'El Mediterráneo en su estado más puro', cap1s:'Calas exclusivas · Mallorca',
-          cap2t:'Motos de Agua', cap2s:'Velocidad · Libertad · Adrenalina',
-          cap3t:'Embarcaciones Premium', cap3s:'Tu flota · Tu ritmo · Tu Mallorca'
-        },
-        contact: { eyebrow:'Hablemos', heading:'Empieza a<br>construir tu<br>experiencia.', para:'Cuéntanos lo que tienes en mente y nosotros nos encargamos del resto. Mallorca es grande, pero nosotros ya la conocemos entera.', phone_lbl:'Teléfono', email_lbl:'Email', location_lbl:'Ubicación' },
-        form: { name_lbl:'Tu nombre', name_ph:'¿Cómo te llamas?', email_lbl:'Email', service_lbl:'¿Qué experiencia buscas?', service_default:'Selecciona una opción', opt1:'Motos de agua', opt2:'Alquiler de embarcación', opt3:'Experiencia completa', opt4:'Quiero más información', msg_lbl:'Cuéntanos más', msg_ph:'Fecha, número de personas, lo que imagines…', submit:'Enviar consulta' },
-        footer: { experiences:'Experiencias', gallery:'Galería', contact:'Contacto', copy:'© 2026 Blue Latitude · Mallorca' }
-      },
-      en: {
-        nav: { experiences:'Experiences', mallorca:'Mallorca', contact:'Contact', book:'Book now' },
-        hero: { eyebrow:'Mallorca · Balearic Islands · Mediterranean', tagline:'The ultimate experience at sea', scroll:'Discover' },
-        statement: {
-          eyebrow:'Mallorca from within',
-          body:'We don\'t sell services.<br>We create <em>moments</em> the<br>Mediterranean keeps forever.',
-          stat1:'Years in Mallorca', stat2:'Experiences delivered', stat3:'Vessels in fleet'
-        },
-        services: { eyebrow:'What we offer', title:'Everything the sea<br>can give you, here.' },
-        svc1: { name:'Jet Skis', desc:'Feel the salt wind and the speed of the Mediterranean beneath you. We have spent years uncovering the most inaccessible corners of Mallorca so that your first moment at sea is also your most memorable.', price:'From [PRECIO] € / hour', cta:'Book now' },
-        svc2: { name:'Boats', desc:'A boat is not merely a vessel — it is the starting point of a story you decide. Every craft in our fleet has been chosen with the same standard we apply to every destination: that it leaves a mark.', price:'From [PRECIO] € / day', cta:'Live the experience' },
-        svc3: { name:'Full Experience', desc:'There is a Mallorca that appears in no guidebook. We have built it over years, cove by cove, sunset by sunset. We place all that knowledge at the service of one single day: yours.', price:'Tailor-made — contact us', cta:'Design my experience' },
-        marquee: { med:'Mediterranean', luxury:'Luxury' },
-        gallery: {
-          eyebrow:'The setting', title:'Mallorca like you\'ve<br>never seen it.', subtitle:'The sea has the ability to reshape time. Here, a single day can hold everything worth remembering. We make sure that it does.',
-          cap1t:'The Mediterranean at its purest', cap1s:'Exclusive coves · Mallorca',
-          cap2t:'Jet Skis', cap2s:'Speed · Freedom · Adrenaline',
-          cap3t:'Premium Boats', cap3s:'Your fleet · Your pace · Your Mallorca'
-        },
-        contact: { eyebrow:'Let\'s talk', heading:'Start building<br>your<br>experience.', para:'Tell us what you have in mind and we\'ll take care of the rest. Mallorca is vast, but we already know every corner of it.', phone_lbl:'Phone', email_lbl:'Email', location_lbl:'Location' },
-        form: { name_lbl:'Your name', name_ph:'What\'s your name?', email_lbl:'Email', service_lbl:'What experience are you looking for?', service_default:'Select an option', opt1:'Jet skis', opt2:'Boat rental', opt3:'Full experience', opt4:'I want more information', msg_lbl:'Tell us more', msg_ph:'Date, number of people, whatever you imagine…', submit:'Send enquiry' },
-        footer: { experiences:'Experiences', gallery:'Gallery', contact:'Contact', copy:'© 2026 Blue Latitude · Mallorca' }
-      },
-      fr: {
-        nav: { experiences:'Expériences', mallorca:'Majorque', contact:'Contact', book:'Réserver' },
-        hero: { eyebrow:'Majorque · Îles Baléares · Méditerranée', tagline:'L\'expérience ultime en mer', scroll:'Découvrir' },
-        statement: {
-          eyebrow:'Majorque de l\'intérieur',
-          body:'Nous ne vendons pas des services.<br>Nous créons des <em>moments</em> que<br>la Méditerranée garde à jamais.',
-          stat1:'Ans à Majorque', stat2:'Expériences réalisées', stat3:'Embarcations en flotte'
-        },
-        services: { eyebrow:'Ce que nous offrons', title:'Tout ce que la mer<br>peut vous donner, ici.' },
-        svc1: { name:'Jet Skis', desc:'Sentir le vent salé et la vitesse de la Méditerranée sous vos pieds. Nous avons passé des années à découvrir les recoins les plus inaccessibles de Majorque pour que votre premier instant en mer soit aussi le plus mémorable.', price:'À partir de [PRECIO] € / heure', cta:'Réserver maintenant' },
-        svc2: { name:'Embarcations', desc:'Une embarcation n\'est pas un simple moyen de transport : c\'est le point de départ d\'une histoire que vous écrivez. Chaque bateau de notre flotte a été choisi avec le même critère que nos destinations : laisser une empreinte.', price:'À partir de [PRECIO] € / jour', cta:'Vivre l\'expérience' },
-        svc3: { name:'Expérience Complète', desc:'Il existe une Majorque qui n\'apparaît dans aucun guide. Nous l\'avons construite crique après crique, coucher de soleil après coucher de soleil. Nous mettons tout ce savoir au service d\'une seule journée : la vôtre.', price:'Sur mesure — contactez-nous', cta:'Concevoir mon expérience' },
-        marquee: { med:'Méditerranée', luxury:'Luxe' },
-        gallery: {
-          eyebrow:'Le décor', title:'Majorque comme vous<br>ne l\'avez jamais vécue.', subtitle:'La mer a la capacité de redimensionner le temps. Ici, une journée peut contenir tout ce qui mérite d\'être rappelé. Nous veillons à ce qu\'il en soit ainsi.',
-          cap1t:'La Méditerranée dans sa forme la plus pure', cap1s:'Criques exclusives · Majorque',
-          cap2t:'Jet Skis', cap2s:'Vitesse · Liberté · Adrénaline',
-          cap3t:'Embarcations Premium', cap3s:'Votre flotte · Votre rythme · Votre Majorque'
-        },
-        contact: { eyebrow:'Parlons-en', heading:'Commencez à<br>construire votre<br>expérience.', para:'Dites-nous ce que vous imaginez et nous nous occupons du reste. Majorque est grande, mais nous la connaissons déjà dans ses moindres recoins.', phone_lbl:'Téléphone', email_lbl:'E-mail', location_lbl:'Emplacement' },
-        form: { name_lbl:'Votre nom', name_ph:'Comment vous appelez-vous ?', email_lbl:'E-mail', service_lbl:'Quelle expérience recherchez-vous ?', service_default:'Sélectionnez une option', opt1:'Jet skis', opt2:'Location d\'embarcation', opt3:'Expérience complète', opt4:'Je veux plus d\'informations', msg_lbl:'Dites-nous en plus', msg_ph:'Date, nombre de personnes, ce que vous imaginez…', submit:'Envoyer la demande' },
-        footer: { experiences:'Expériences', gallery:'Galerie', contact:'Contact', copy:'© 2026 Blue Latitude · Majorque' }
-      },
-      de: {
-        nav: { experiences:'Erlebnisse', mallorca:'Mallorca', contact:'Kontakt', book:'Buchen' },
-        hero: { eyebrow:'Mallorca · Balearen · Mittelmeer', tagline:'Das ultimative Erlebnis auf See', scroll:'Entdecken' },
-        statement: {
-          eyebrow:'Mallorca von innen',
-          body:'Wir verkaufen keine Dienstleistungen.<br>Wir erschaffen <em>Momente</em>,<br>die das Mittelmeer für immer bewahrt.',
-          stat1:'Jahre auf Mallorca', stat2:'Erlebnisse realisiert', stat3:'Schiffe in der Flotte'
-        },
-        services: { eyebrow:'Was wir bieten', title:'Alles, was das Meer<br>dir geben kann, hier.' },
-        svc1: { name:'Jet Skis', desc:'Den Salzwind und die Geschwindigkeit des Mittelmeers unter den Füßen spüren. Wir haben jahrelang die unzugänglichsten Winkel Mallorcas erkundet, damit dein erster Augenblick auf See auch dein unvergesslichster wird.', price:'Ab [PRECIO] € / Stunde', cta:'Jetzt buchen' },
-        svc2: { name:'Boote', desc:'Ein Boot ist nicht nur ein Fortbewegungsmittel — es ist der Ausgangspunkt einer Geschichte, die du selbst schreibst. Jedes Schiff unserer Flotte wurde nach demselben Maßstab ausgewählt wie unsere Ziele: dass es Spuren hinterlässt.', price:'Ab [PRECIO] € / Tag', cta:'Das Erlebnis leben' },
-        svc3: { name:'Komplettpaket', desc:'Es gibt ein Mallorca, das in keinem Reiseführer vorkommt. Wir haben es über Jahre hinweg aufgebaut, Bucht für Bucht, Sonnenuntergang für Sonnenuntergang. Dieses Wissen stellen wir in den Dienst eines einzigen Tages: deines.', price:'Maßgeschneidert — ruf uns an', cta:'Mein Erlebnis gestalten' },
-        marquee: { med:'Mittelmeer', luxury:'Luxus' },
-        gallery: {
-          eyebrow:'Die Kulisse', title:'Mallorca wie du es<br>noch nie erlebt hast.', subtitle:'Das Meer hat die Fähigkeit, die Zeit neu zu dimensionieren. Hier kann ein einziger Tag alles enthalten, was es wert ist, in Erinnerung zu bleiben. Wir sorgen dafür, dass es so ist.',
-          cap1t:'Das Mittelmeer in seiner reinsten Form', cap1s:'Exklusive Buchten · Mallorca',
-          cap2t:'Jet Skis', cap2s:'Geschwindigkeit · Freiheit · Adrenalin',
-          cap3t:'Premium Boote', cap3s:'Deine Flotte · Dein Tempo · Dein Mallorca'
-        },
-        contact: { eyebrow:'Lass uns reden', heading:'Beginne dein<br>Erlebnis zu<br>gestalten.', para:'Sag uns, was du dir vorstellst, und wir kümmern uns um den Rest. Mallorca ist groß, aber wir kennen es bereits in- und auswendig.', phone_lbl:'Telefon', email_lbl:'E-Mail', location_lbl:'Standort' },
-        form: { name_lbl:'Dein Name', name_ph:'Wie heißt du?', email_lbl:'E-Mail', service_lbl:'Welches Erlebnis suchst du?', service_default:'Wähle eine Option', opt1:'Jet Skis', opt2:'Bootsverleih', opt3:'Komplettpaket', opt4:'Ich möchte mehr Informationen', msg_lbl:'Erzähl uns mehr', msg_ph:'Datum, Personenanzahl, was auch immer du dir vorstellst…', submit:'Anfrage senden' },
-        footer: { experiences:'Erlebnisse', gallery:'Galerie', contact:'Kontakt', copy:'© 2026 Blue Latitude · Mallorca' }
-      }
-    };
-
-    function val(lang, key) {
-      return key.split('.').reduce((o, k) => o?.[k], T[lang]);
-    }
-
-    function applyLang(lang) {
-      if (!T[lang]) return;
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const v = val(lang, el.getAttribute('data-i18n'));
-        if (v != null) el.textContent = v;
-      });
-      document.querySelectorAll('[data-i18n-html]').forEach(el => {
-        const v = val(lang, el.getAttribute('data-i18n-html'));
-        if (v != null) el.innerHTML = v;
-      });
-      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-        const v = val(lang, el.getAttribute('data-i18n-ph'));
-        if (v != null) el.placeholder = v;
-      });
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
-      try { localStorage.setItem('bl-lang', lang); } catch(e) {}
-    }
-
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
-    });
-
-    applyLang(localStorage.getItem('bl-lang') || 'es');
-
-    /* ━━━ MOBILE MENU TOGGLE ━━━ */
-    const toggle = document.querySelector('.nav-toggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    toggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      toggle.classList.toggle('open', isOpen);
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        toggle.classList.remove('open');
-      });
-    });
-
-    /* ━━━ SHIMMER LINES ━━━ */
-    const shimmer = document.getElementById('shimmerContainer');
-    if (shimmer) {
-      [18,30,42,56,70,80].forEach((top,i) => {
-        const el = document.createElement('div');
-        el.className = 'shimmer-line';
-        el.style.cssText = `top:${top}%;animation-duration:${7+i*2.5}s;animation-delay:${i*1.4}s;`;
-        shimmer.appendChild(el);
-      });
-    }
-
-    /* ━━━ PARTICLES ━━━ */
-    const pc = document.getElementById('particleContainer');
-    if (pc) {
-      for (let i = 0; i < 28; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const s = Math.random() * 2.5 + .8;
-        p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*18+9}s;animation-delay:${Math.random()*12}s;`;
-        pc.appendChild(p);
-      }
-    }
-
-    /* ━━━ NAV SCROLL ━━━ */
+    // Nav scroll
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);
-    }, { passive: true });
+    });
 
-    /* ━━━ SCROLL REVEAL ━━━ */
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.14, rootMargin: '0px 0px -48px 0px' });
-    document.querySelectorAll('.sr, .sr-scale').forEach(el => io.observe(el));
+    // Menú móvil
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
 
-    /* ━━━ SMOOTH LINKS ━━━ */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const t = document.querySelector(a.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Cerrar menú móvil al hacer click en un enlace
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        mobileMenu.classList.remove('open');
       });
     });
 
-    /* ━━━ GALLERY PARALLAX ━━━ */
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.g-fill').forEach(item => {
-        const rect = item.closest('.g-item').getBoundingClientRect();
-        const offset = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * .06;
-        item.style.transform = `translateY(${offset}px)`;
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in');
       });
-    }, { passive: true });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-    /*
-      SCROLL VIDEO — Cuando tengas assets/hero.mp4 descomenta este bloque:
+    document.querySelectorAll('.sr, .sr-scale').forEach(el => observer.observe(el));
 
-    const heroEl = document.querySelector('.hero');
-    heroEl.style.height = '500vh';
-    const stickyWrap = document.createElement('div');
-    stickyWrap.style.cssText = 'position:sticky;top:0;height:100vh;width:100%;overflow:hidden;';
-    const vid = document.createElement('video');
-    vid.src = 'assets/hero.mp4';
-    vid.muted = true; vid.playsInline = true; vid.preload = 'auto';
-    vid.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;';
-    while (heroEl.firstChild) stickyWrap.appendChild(heroEl.firstChild);
-    stickyWrap.prepend(vid);
-    heroEl.appendChild(stickyWrap);
-    const isMobile = window.matchMedia('(max-width:768px)').matches;
-    if (isMobile) { vid.autoplay=true; vid.loop=true; vid.play().catch(()=>{}); }
-    else {
-      vid.pause(); vid.currentTime=0;
-      let ready=false;
-      vid.addEventListener('loadedmetadata', ()=>{ ready=true; });
-      vid.load();
-      let ticking=false;
-      window.addEventListener('scroll', ()=>{
-        if (!ticking) {
-          requestAnimationFrame(()=>{
-            if (!ready||!vid.duration){ticking=false;return;}
-            const rect=heroEl.getBoundingClientRect();
-            const scrolled=-rect.top;
-            const scrollable=heroEl.offsetHeight-window.innerHeight;
-            if (scrolled<=0){vid.currentTime=0;ticking=false;return;}
-            if (scrolled>=scrollable){vid.currentTime=vid.duration;ticking=false;return;}
-            vid.currentTime=(scrolled/scrollable)*vid.duration;
-            ticking=false;
-          });
-          ticking=true;
-        }
-      }, {passive:true});
-    }
-    */
+    // Custom dropdown
+    const dropdown = document.getElementById('serviceDropdown');
+    const trigger = document.getElementById('dropdownTrigger');
+    const label = document.getElementById('dropdownLabel');
+    const options = document.querySelectorAll('.f-dropdown-option');
 
-  })();
+    trigger.addEventListener('click', () => dropdown.classList.toggle('open'));
+
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+    });
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        label.textContent = opt.textContent.trim();
+        trigger.classList.add('has-value');
+        dropdown.classList.remove('open');
+      });
+    });
   </script>
-
 </body>
 </html>
