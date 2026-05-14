@@ -238,13 +238,12 @@
       transform: translateY(-8px);
       border-color: rgba(197,164,110,.3);
     }
-    .svc-num {
-      font-family: 'Inter', sans-serif; font-size: 4rem; font-weight: 700; letter-spacing: -.04em;
-      line-height: 1; color: rgba(255,255,255,.05); transition: color .5s;
+    .svc-num { display: none; }
+    .svc-icon {
+      position: absolute; top: 32px; right: 36px;
+      color: var(--gold); transition: transform .4s;
     }
-    .svc:hover .svc-num { color: rgba(197,164,110,.15); }
-    .svc-icon { margin-top: auto; margin-bottom: 28px; color: var(--gold); transition: transform .4s; }
-    .svc:hover .svc-icon { transform: translateY(-4px) scale(1.1); }
+    .svc:hover .svc-icon { transform: scale(1.15); }
     .svc-name { font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 600; letter-spacing: -.02em; color: var(--white); margin-bottom: 16px; line-height: 1.15; }
     .svc-desc { font-size: .9rem; line-height: 1.7; color: rgba(244,239,230,.6); margin-bottom: 36px; }
     .svc-price { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500; color: var(--gold); margin-bottom: 28px; }
@@ -603,8 +602,8 @@
         <p class="contact-para sr d2" data-i18n="contact.para">Cuéntanos lo que tienes en mente y nosotros nos encargamos del resto. Mallorca es grande, pero nosotros ya la conocemos entera.</p>
         <div class="contact-items sr d3">
           <div>
-            <p class="contact-item-lbl">Teléfono · WhatsApp</p>
-            <a href="tel:+34660591278" class="contact-item-val" style="text-decoration:none; color:var(--navy);">+34 660 59 12 78</a>
+            <p class="contact-item-lbl">Teléfono</p>
+            <p class="contact-item-val">+34 660 59 12 78</p>
           </div>
           <div>
             <p class="contact-item-lbl">Email</p>
