@@ -21,7 +21,6 @@
       --gold:      #D0DEE8;
       --gold-lt:   #E8F1F6;
       --white:     #FFFFFF;
-      --muted:     #7A8E9E;
     }
 
     html { scroll-behavior: smooth; }
@@ -75,19 +74,6 @@
       transition: color .3s; font-weight: 500;
     }
     .nav-links a:hover { color: var(--white); }
-
-    /* Botón estilo píldora Apple */
-    .nav-reserve {
-      font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
-      background: var(--gold); color: var(--navy); text-decoration: none;
-      font-weight: 500;
-      border: none; padding: 12px 32px; border-radius: 50px;
-      transition: transform .35s, box-shadow .35s;
-    }
-    .nav-reserve:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(197, 164, 110, 0.3);
-    }
 
     .nav-toggle {
       display: none; flex-direction: column; gap: 5px;
@@ -202,7 +188,6 @@
       z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 14px;
       opacity: 0; animation: anim-fade-in 1s ease 1.8s forwards;
     }
-    .hero-scroll-label { font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: rgba(208,222,232,.8); font-weight: 500; }
     .hero-scroll-line {
       width: 2px; height: 64px; border-radius: 2px;
       background: linear-gradient(to bottom, var(--gold), transparent);
@@ -220,7 +205,6 @@
       display: block; font-size: .62rem; letter-spacing: .48em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 48px; font-weight: 700;
     }
-    .statement .section-eyebrow { color: var(--gold); }
     .statement-body {
       font-family: 'Inter', sans-serif;
       font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 3rem); white-space: nowrap;
@@ -233,13 +217,8 @@
       background: linear-gradient(to bottom, transparent, var(--gold), transparent);
       margin: 30px auto 20px auto;
     }
-    .stats-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 80px; }
-    .stat-num { font-family: 'Inter', sans-serif; font-size: 4rem; font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--white); }
-    .stat-lbl { margin-top: 15px; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(244,239,230,.5); font-weight: 700; }
 
     /* ━━━ SERVICES ━━━ */
-    .services { background: var(--navy); padding: 120px 64px; }
-
     .svc-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -286,89 +265,6 @@
       transition: color .3s;
     }
     .svc-card:hover .svc-card-label { color: var(--gold); }
-
-    .section-header { text-align: center; margin-bottom: 80px; }
-    .section-title {
-      font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -.03em;
-      font-size: clamp(2.6rem, 5vw, 4.5rem); line-height: 1.1; color: var(--white);
-    }
-
-    .services-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 24px; max-width: 1240px; margin: 0 auto;
-      background: transparent;
-    }
-    .svc {
-      background-color: rgba(10, 18, 30, 0.72);
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 60px 48px;
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      display: flex; flex-direction: column; min-height: 500px;
-      position: relative; overflow: hidden; cursor: pointer;
-      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.4s, border-color 0.4s;
-    }
-    .svc:hover {
-      background-color: rgba(20, 38, 58, 0.55);
-      transform: translateY(-8px);
-      border-color: rgba(208,222,232,.3);
-    }
-    .svc-num { display: none; }
-    .svc-icon {
-      position: absolute; top: 32px; right: 36px;
-      color: var(--gold); transition: transform .4s;
-    }
-    .svc:hover .svc-icon { transform: scale(1.15); }
-    .svc-name { font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 600; letter-spacing: -.02em; color: var(--white); margin-bottom: 16px; line-height: 1.15; }
-    .svc-desc { font-size: .9rem; line-height: 1.7; color: rgba(244,239,230,.6); margin-bottom: 36px; }
-    .svc-price { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500; color: var(--gold); margin-bottom: 28px; }
-    .svc-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600;
-      color: var(--white); text-decoration: none; transition: gap .35s, color .3s;
-    }
-    .svc-cta::after { content: '→'; font-size: .85rem; color: var(--gold); transition: transform .35s; }
-    .svc:hover .svc-cta { gap: 16px; color: var(--gold); }
-    .svc:hover .svc-cta::after { transform: translateX(4px); }
-
-    /* ━━━ MARQUEE ━━━ */
-    .marquee-section {
-      background: var(--navy-mid); padding: 60px 0; overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,.03); border-bottom: 1px solid rgba(255,255,255,.03);
-    }
-    .marquee-track { display: flex; gap: 60px; white-space: nowrap; animation: marquee-scroll 22s linear infinite; }
-    .marquee-word {
-      font-family: 'Inter', sans-serif; font-size: 4rem; font-weight: 700; letter-spacing: -.02em;
-      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.15); flex-shrink: 0;
-    }
-    .marquee-dot { font-family: 'Inter', sans-serif; font-size: 4rem; color: var(--gold); flex-shrink: 0; }
-    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* ━━━ GALLERY (Bento Box Redondeado) ━━━ */
-    .experience-intro { background: var(--cream); padding: 130px 64px; text-align: center; }
-    .exp-title { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -.03em; font-size: clamp(2.6rem, 5vw, 4.5rem); color: var(--navy); line-height: 1.1; margin-bottom: 28px; }
-    .exp-subtitle { font-size: .9rem; color: rgba(12,26,39,.7); line-height: 1.7; max-width: 600px; margin: 0 auto; font-weight: 500; }
-
-    .gallery {
-      display: grid; grid-template-columns: 5fr 4fr; grid-template-rows: 55vh 40vh;
-      gap: 24px; padding: 0 64px 100px; background: var(--cream);
-    }
-    .g-item { position: relative; overflow: hidden; background: var(--navy-mid); border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-    .g-item:nth-child(1) { grid-row: 1 / 3; }
-    .g-fill { width: 100%; height: 100%; min-height: 300px; position: relative; overflow: hidden; transition: transform 6s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    .g-item:hover .g-fill { transform: scale(1.05); }
-    .g-fill.ocean-1 { background: url('assets/beaches/cala-pi.jpg') center center / cover no-repeat; }
-    .g-fill.ocean-2 { background: url('assets/motos/excursion-moto-de-agua-mallorca-1.png') center center / cover no-repeat; }
-    .g-fill.ocean-3 { background: url('assets/boats/gecko-barco.jpeg') center center / cover no-repeat; }
-
-    .g-caption {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 50px 40px 40px;
-      background: linear-gradient(to top, rgba(8,18,32,.9) 0%, transparent 100%);
-    }
-    .g-caption-title { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 600; letter-spacing: -.02em; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
-    .g-caption-sub { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; color: var(--gold); }
-
 
     /* ━━━ FOOD HERO (scroll-video) ━━━ */
     .food-hero {
@@ -698,75 +594,6 @@
       .yacht-hero { height: 100vh; }
     }
 
-    /* ━━━ SERVICE DETAILS ━━━ */
-    /* ━━━ SERVICE PAGES ━━━ */
-    .svc-page {
-      min-height: 100vh;
-      padding: 140px 80px 100px;
-      border-top: 1px solid rgba(208,222,232,.1);
-      display: flex; align-items: flex-start;
-    }
-    .svc-page:nth-child(even) { background: var(--navy-mid); }
-    .svc-page-inner {
-      max-width: 1200px; margin: 0 auto; width: 100%;
-      display: flex; flex-direction: column; gap: 52px;
-    }
-    .svc-page-header { display: flex; flex-direction: column; gap: 14px; }
-    .svc-page-eyebrow {
-      font-size: .6rem; letter-spacing: .5em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500;
-    }
-    .svc-page-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 300; line-height: 1; color: var(--white);
-      text-shadow: 0 2px 24px rgba(208,222,232,.12);
-    }
-    .svc-page-title em { font-style: italic; color: var(--gold-lt); }
-    .svc-page-media-grid { display: flex; flex-direction: column; gap: 10px; }
-    .svc-media-main {
-      width: 100%; height: clamp(280px, 52vh, 580px);
-      border-radius: 16px; background: var(--navy-soft);
-      border: 1px dashed rgba(208,222,232,.2);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .svc-media-thumbs {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-    }
-    .svc-media-thumb {
-      height: clamp(90px, 16vh, 180px);
-      border-radius: 12px; background: var(--navy-soft);
-      border: 1px dashed rgba(208,222,232,.15);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .svc-media-label {
-      font-size: .52rem; letter-spacing: .4em; text-transform: uppercase;
-      color: rgba(208,222,232,.3); font-weight: 500;
-    }
-    .svc-page-content {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 60px;
-    }
-    .svc-page-body {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem; line-height: 1.9;
-      color: rgba(244,239,230,.82); font-weight: 300;
-      max-width: 640px;
-      border-left: 2px solid rgba(208,222,232,.35);
-      padding-left: 24px;
-    }
-    @media (max-width: 960px) {
-      .svc-page { padding: 120px 40px 80px; }
-    }
-    @media (max-width: 768px) {
-      .svc-page { padding: 100px 28px 72px; }
-      .svc-media-thumbs { grid-template-columns: repeat(2, 1fr); }
-      .svc-page-content { flex-direction: column; gap: 32px; }
-    }
-    @media (max-width: 480px) {
-      .svc-media-thumbs { grid-template-columns: 1fr; }
-    }
-
     /* ━━━ CONTACT ━━━ */
     .contact { background: var(--cream); padding: 140px 64px; text-align: center; }
     .contact-inner { max-width: 800px; margin: 0 auto; }
@@ -783,91 +610,28 @@
     .contact-instagram:hover { opacity: 1; }
     .contact-instagram svg { width: 18px; height: 18px; }
 
-    .contact-form { display: flex; flex-direction: column; gap: 28px; background: var(--white); padding: 48px; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
-    .f-group { display: flex; flex-direction: column; gap: 8px; }
-    .f-label { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 600; color: var(--muted); }
-    .f-input, .f-textarea {
-      background: transparent; border: none; border-bottom: 2px solid rgba(12,26,39,.1);
-      padding: 12px 0; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500;
-      color: var(--navy); outline: none; transition: border-color .3s; width: 100%;
-    }
-    .f-input:focus, .f-textarea:focus { border-color: var(--navy); }
-    .f-textarea { resize: none; height: 78px; }
-
-    /* Custom dropdown */
-    .f-dropdown { position: relative; }
-    .f-dropdown-trigger {
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 2px solid rgba(12,26,39,.1); padding: 12px 0; cursor: pointer;
-      font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500;
-      color: rgba(12,26,39,.35); transition: border-color .3s; user-select: none;
-    }
-    .f-dropdown-trigger.has-value { color: var(--navy); }
-    .f-dropdown.open .f-dropdown-trigger { border-color: var(--navy); }
-    .f-dropdown-arrow {
-      width: 8px; height: 8px; flex-shrink: 0;
-      border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted);
-      transform: rotate(45deg) translateY(-2px); transition: transform .3s;
-    }
-    .f-dropdown.open .f-dropdown-arrow { transform: rotate(-135deg) translateY(-2px); }
-    .f-dropdown-options {
-      position: absolute; top: calc(100% + 10px); left: -20px; right: -20px;
-      background: var(--white); border-radius: 20px;
-      box-shadow: 0 24px 64px rgba(12,26,39,.13), 0 4px 16px rgba(12,26,39,.07);
-      overflow: hidden; z-index: 50;
-      opacity: 0; transform: translateY(-6px) scale(.98); pointer-events: none;
-      transition: opacity .22s cubic-bezier(0.2,0.8,0.2,1), transform .22s cubic-bezier(0.2,0.8,0.2,1);
-    }
-    .f-dropdown.open .f-dropdown-options { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
-    .f-dropdown-option {
-      padding: 15px 22px; cursor: pointer;
-      font-family: 'Inter', sans-serif; font-size: .9rem; font-weight: 500;
-      color: var(--navy); display: flex; align-items: center; gap: 12px;
-      transition: background .18s, color .18s; border-bottom: 1px solid rgba(12,26,39,.05);
-    }
-    .f-dropdown-option:last-child { border-bottom: none; }
-    .f-dropdown-option:hover { background: rgba(12,26,39,.04); color: var(--navy); }
-    .f-dropdown-option.selected { color: var(--navy); font-weight: 600; }
-    .wa-btn {
-      display: inline-flex; align-items: center; gap: 10px; margin-top: 40px;
-      padding: 14px 32px; border-radius: 50px;
-      background: #25D366; color: #fff; text-decoration: none;
-      font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-      transition: transform .3s, box-shadow .3s;
-    }
-    .wa-btn:hover { transform: scale(1.04); box-shadow: 0 10px 24px rgba(37,211,102,.3); }
-
-    /* Botón Formulario Píldora Apple */
-    .f-btn {
-      margin-top: 24px; padding: 18px 48px; align-self: flex-start;
-      background: var(--navy); color: var(--cream); border-radius: 50px;
-      font-family: 'Inter', sans-serif; font-size: .75rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
-      border: none; cursor: pointer; transition: transform .3s, box-shadow .3s;
-    }
-    .f-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(12,26,39,.15); }
-
     /* ━━━ FOOTER ━━━ */
     footer {
       background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
-      padding: 80px 64px;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 48px;
+      padding: 64px 64px;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
       border-top: 1px solid rgba(208,222,232,.15);
       position: relative;
     }
+    .footer-logo { justify-self: start; }
+    .footer-copy { justify-self: end; }
     footer::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0;
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(208,222,232,.4), transparent);
     }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; letter-spacing: .05em; color: var(--white); }
-    .footer-logo em { color: var(--gold); font-style: normal; font-weight: 700; }
+    .footer-logo { font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--white); }
+    .footer-logo em { color: var(--gold); font-style: normal; }
     .footer-links { display: flex; gap: 40px; }
-    .footer-links a { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,239,230,.65); text-decoration: none; transition: all .35s; position: relative; }
-    .footer-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .35s; }
+    .footer-links a { font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(244,239,230,.55); text-decoration: none; transition: color .3s; }
     .footer-links a:hover { color: var(--gold); }
-    .footer-links a:hover::after { width: 100%; }
-    .footer-copy { font-size: .72rem; font-weight: 400; color: rgba(244,239,230,.4); letter-spacing: .08em; }
+    .footer-copy { font-size: .68rem; font-weight: 400; color: rgba(244,239,230,.35); letter-spacing: .12em; text-transform: uppercase; }
 
     /* ━━━ ANIMATIONS ━━━ */
     @keyframes anim-fade-up {
@@ -889,14 +653,10 @@
 
     /* ━━━ RESPONSIVE ━━━ */
     @media (max-width: 1100px) {
-      .services-grid { grid-template-columns: 1fr; max-width: 520px; }
       .svc-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .contact-items { flex-direction: column; align-items: center; gap: 32px; }
       .contact-item { border-right: none; border-bottom: 1px solid rgba(12,26,39,.12); padding: 0 0 32px; width: 100%; }
       .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
-      .gallery { grid-template-columns: 1fr; grid-template-rows: auto; padding: 0 32px 80px; }
-      .g-item:nth-child(1) { grid-row: auto; }
-      .g-fill { min-height: 360px; }
     }
     @media (max-width: 960px) {
       nav { padding: 20px 36px; }
@@ -910,11 +670,9 @@
     }
     @media (max-width: 768px) {
       nav { padding: 20px 24px; }
-      .statement, .services, .experience-intro, .contact { padding: 100px 28px; }
-      .contact-form { padding: 32px 24px; }
-      footer { padding: 48px 28px; flex-direction: column; align-items: flex-start; }
-      .stats-row { gap: 44px; }
-      .marquee-word, .marquee-dot { font-size: 2.5rem; }
+      .statement, .contact { padding: 100px 28px; }
+      footer { padding: 48px 28px; grid-template-columns: 1fr; justify-items: center; gap: 28px; }
+      .footer-logo, .footer-copy { justify-self: center; }
       .hero-title img { max-width: 420px; width: 90vw; }
       .hero-tagline { font-size: .65rem; letter-spacing: .2em; }
     }
@@ -953,7 +711,6 @@
   <div class="mobile-menu" id="mobileMenu">
     <ul class="mobile-links">
       <li><a href="#servicios" data-i18n="nav.experiences">Experiencias</a></li>
-      <li><a href="#galeria" data-i18n="nav.mallorca">Mallorca</a></li>
       <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
     </ul>
     <a href="#contacto" class="mobile-reserve" data-i18n="nav.book">Reservar</a>
@@ -962,7 +719,7 @@
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-bg"></div>
-    <video class="hero-video" src="https://n9uj95ygzspnhwtx.public.blob.vercel-storage.com/videos/hero-mallorca.mov" autoplay muted loop playsinline></video>
+    <video class="hero-video" src="https://www.dropbox.com/scl/fi/jjyqxi4i2x6syre09ut1i/FPV-MALLORCA-2.mov?rlkey=i55s0m46gc7hambc4l39fsosn&st=c66g8h25&raw=1" autoplay muted loop playsinline></video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">
@@ -985,7 +742,7 @@
     <div class="svc-grid" id="servicios">
       <a href="#yacht-hero" class="svc-card sr d1">
         <div class="svc-card-inner">
-          <img class="svc-card-img" src="assets/services/Yachtvices_fondo.png" alt="Yacht Services">
+          <img class="svc-card-img" src="assets/services/Yachtvices_plata.png" alt="Yacht Services">
         </div>
         <p class="svc-card-label">Yacht Services</p>
       </a>
@@ -1078,7 +835,6 @@
   <!-- CONTACT -->
   <section class="contact" id="contacto">
     <div class="contact-inner">
-    <!-- <span class="section-eyebrow sr" style="color:var(--gold)" data-i18n="contact.eyebrow">Hablemos</span> -->
       <h2 class="contact-heading sr d1" data-i18n-html="contact.heading">Empieza a construir<br>tu experiencia.</h2>
       <p class="contact-para sr d2" data-i18n="contact.para">Cuéntanos lo que tienes en mente y nosotros nos encargamos del resto. Mallorca es grande, pero nosotros ya la conocemos entera.</p>
       <div class="contact-rule sr d3"></div>
@@ -1096,13 +852,13 @@
           <span class="contact-item-val">Mallorca, Islas Baleares</span>
         </div>
       </div>
-      <a href="https://instagram.com/bluelatitude" target="_blank" rel="noopener" class="contact-instagram sr d4">
+      <a href="https://instagram.com/bluelatitudeco" target="_blank" rel="noopener noreferrer" class="contact-instagram sr d4">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <circle cx="12" cy="12" r="4"/>
           <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
         </svg>
-        @bluelatitude
+        @bluelatitudeco
       </a>
     </div>
   </section>
@@ -1113,9 +869,8 @@
     <div class="footer-links">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Experiencias</a>
-      <a href="#galeria">Mallorca</a>
     </div>
-    <div class="footer-copy">© 2024 Blue Latitude. Todos los derechos reservados.</div>
+    <div class="footer-copy">© 2026 Blue Latitude. Todos los derechos reservados.</div>
   </footer>
 
   <script>
@@ -1159,10 +914,6 @@
         'nav.book':           'Reservar',
         'statement.eyebrow':  'Mallorca desde dentro',
         'statement.body':     'Conoce Mallorca a través de una experiencia única y exclusiva',
-        'statement.stat1':    'Años en Mallorca',
-        'statement.stat2':    'Experiencias entregadas',
-        'statement.stat3':    'Embarcaciones en flota',
-        'contact.eyebrow':    'Hablemos',
         'contact.heading':    'Empieza a construir<br>tu experiencia.',
         'contact.para':       'Cuéntanos lo que tienes en mente y nosotros nos encargamos del resto. Mallorca es grande, pero nosotros ya la conocemos entera.',
         'svc.yacht':          'No es solo navegar; es poseer el horizonte de las islas más bellas del Mediterráneo. Ponemos a tu disposición los superyates más sofisticados para descubrir el archipiélago desde su mejor perspectiva. Es el sol acariciando tu piel mientras fondeas en las aguas turquesas de Formentera, ver el atardecer recortándose en la silueta de Es Vedrà en Ibiza, o refugiarte en las calas vírgenes y silenciosas de Menorca. Una tripulación experta que se anticipa a cada deseo, transformando el mar balear en tu santuario privado de libertad absoluta.',
@@ -1177,10 +928,6 @@
         'nav.book':           'Book Now',
         'statement.eyebrow':  'Mallorca from within',
         'statement.body':     'Discover Mallorca through a unique and exclusive experience',
-        'statement.stat1':    'Years in Mallorca',
-        'statement.stat2':    'Experiences delivered',
-        'statement.stat3':    'Vessels in fleet',
-        'contact.eyebrow':    "Let's talk",
         'contact.heading':    'Start building<br>your experience.',
         'contact.para':       "Tell us what you have in mind and we'll take care of the rest. Mallorca is vast, but we already know every corner of it.",
         'svc.yacht':          'It is not just sailing; it is owning the horizon of the most beautiful islands in the Mediterranean. We place the most sophisticated superyachts at your disposal to discover the archipelago from its finest perspective. Feel the sun on your skin as you anchor in the turquoise waters of Formentera, watch the sunset silhouetted against Es Vedrà in Ibiza, or take refuge in the virgin, silent coves of Menorca. An expert crew that anticipates your every wish, turning the Balearic Sea into your private sanctuary of absolute freedom.',
@@ -1195,10 +942,6 @@
         'nav.book':           'Réserver',
         'statement.eyebrow':  "Majorque de l'intérieur",
         'statement.body':     'Découvrez Majorque à travers une expérience unique et exclusive',
-        'statement.stat1':    'Années à Majorque',
-        'statement.stat2':    'Expériences livrées',
-        'statement.stat3':    'Bateaux en flotte',
-        'contact.eyebrow':    'Parlons-en',
         'contact.heading':    'Commencez à bâtir<br>votre expérience.',
         'contact.para':       "Dites-nous ce que vous avez en tête et nous nous occupons du reste. Majorque est grande, mais nous la connaissons déjà entièrement.",
         'svc.yacht':          "Ce n'est pas seulement naviguer ; c'est posséder l'horizon des plus belles îles de la Méditerranée. Nous mettons à votre disposition les superyachts les plus sophistiqués pour découvrir l'archipel sous son meilleur angle. C'est le soleil caressant votre peau pendant que vous mouillez dans les eaux turquoises de Formentera, le coucher de soleil se découpant sur la silhouette d'Es Vedrà à Ibiza, ou vous réfugier dans les criques vierges et silencieuses de Minorque. Un équipage expert qui anticipe chaque désir, transformant la mer Baléare en votre sanctuaire privé de liberté absolue.",
@@ -1213,10 +956,6 @@
         'nav.book':           'Buchen',
         'statement.eyebrow':  'Mallorca von innen',
         'statement.body':     'Entdecken Sie Mallorca durch ein einzigartiges und exklusives Erlebnis',
-        'statement.stat1':    'Jahre auf Mallorca',
-        'statement.stat2':    'Erlebnisse geliefert',
-        'statement.stat3':    'Schiffe in der Flotte',
-        'contact.eyebrow':    'Sprechen wir',
         'contact.heading':    'Beginnen Sie, Ihr<br>Erlebnis zu gestalten.',
         'contact.para':       'Sagen Sie uns, was Sie vorhaben, und wir kümmern uns um den Rest. Mallorca ist groß, aber wir kennen es bereits in- und auswendig.',
         'svc.yacht':          'Es geht nicht nur ums Segeln; es geht darum, den Horizont der schönsten Inseln des Mittelmeers zu besitzen. Wir stellen Ihnen die anspruchsvollsten Superyachten zur Verfügung, um den Archipel von seiner besten Seite zu entdecken. Die Sonne auf Ihrer Haut, während Sie in den türkisfarbenen Gewässern von Formentera ankern, der Sonnenuntergang hinter der Silhouette von Es Vedrà auf Ibiza oder die Zuflucht in den unberührten, stillen Buchten Menorcas. Eine erfahrene Crew, die jeden Wunsch antizipiert und das Balearenmeer in Ihr privates Heiligtum absoluter Freiheit verwandelt.',
@@ -1449,7 +1188,7 @@
       video.pause();
       video.currentTime = 0;
       let isReady = false;
-      let displayed = 0; // valor actual interpolado
+      let displayed = 0;
 
       video.addEventListener('canplaythrough', () => { isReady = true; });
       video.load();
