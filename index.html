@@ -215,6 +215,9 @@
       letter-spacing: -.02em;
       line-height: 1.18; color: var(--cream); max-width: 1200px; margin: 0 auto;
     }
+    @media (max-width: 768px) {
+      .statement-body { white-space: normal; font-size: clamp(1rem, 4vw, 1.8rem); }
+    }
     .statement-body em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 1.1em; font-weight: 300;}
     .statement-rule {
       width: 2px; height: 90px; border-radius: 2px;
