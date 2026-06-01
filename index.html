@@ -6,9 +6,56 @@
   <meta name="format-detection" content="telephone=no">
   <title>Bluelatitude</title>
   <link rel="icon" type="image/png" href="assets/hero/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      font-style: normal;
+      font-weight: 300 500;
+      font-display: swap;
+      src: url('assets/fonts/cormorant-normal-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      font-style: normal;
+      font-weight: 300 500;
+      font-display: swap;
+      src: url('assets/fonts/cormorant-normal.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      font-style: italic;
+      font-weight: 300 500;
+      font-display: swap;
+      src: url('assets/fonts/cormorant-italic-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      font-style: italic;
+      font-weight: 300 500;
+      font-display: swap;
+      src: url('assets/fonts/cormorant-italic.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url('assets/fonts/inter-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url('assets/fonts/inter.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -604,7 +651,7 @@
     /* ━━━ CONTACT ━━━ */
     .contact { background: var(--cream); padding: 140px 64px; text-align: center; }
     .contact-inner { max-width: 800px; margin: 0 auto; }
-    .contact-heading { font-family: 'Inter', sans-serif; font-weight: 400; letter-spacing: -.03em; font-size: clamp(2.8rem, 5vw, 5rem); line-height: 1.02; color: var(--navy); margin-bottom: 28px; }
+    .contact-heading { font-family: 'Inter', sans-serif; font-weight: 400; letter-spacing: -.03em; font-size: clamp(2.8rem, 5vw, 5rem); line-height: 1.02; color: var(--navy); margin-bottom: 28px; white-space: pre-line; }
     .contact-para { font-size: .95rem; line-height: 1.8; color: rgba(12,26,39,.7); margin-bottom: 64px; font-weight: 500; }
     .contact-rule { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--navy), transparent); margin: 0 auto 64px; }
     .contact-items { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; }
@@ -922,7 +969,7 @@
         'nav.book':           'Reservar',
         'statement.eyebrow':  'Mallorca desde dentro',
         'statement.body':     'Conoce Mallorca a través de una experiencia única y exclusiva',
-        'contact.heading':    'Empieza a construir<br>tu experiencia.',
+        'contact.heading':    'Empieza a construir\ntu experiencia.',
         'contact.para':       'Cuéntanos lo que tienes en mente y nosotros nos encargamos del resto. Mallorca es grande, pero nosotros ya la conocemos entera.',
         'svc.yacht':          'No es solo navegar; es poseer el horizonte de las islas más bellas del Mediterráneo. Ponemos a tu disposición los superyates más sofisticados para descubrir el archipiélago desde su mejor perspectiva. Es el sol acariciando tu piel mientras fondeas en las aguas turquesas de Formentera, ver el atardecer recortándose en la silueta de Es Vedrà en Ibiza, o refugiarte en las calas vírgenes y silenciosas de Menorca. Una tripulación experta que se anticipa a cada deseo, transformando el mar balear en tu santuario privado de libertad absoluta.',
         'svc.food':           'El lujo en las Islas Baleares también se saborea, fusionando la esencia mediterránea con la alta cocina de vanguardia. Diseñamos experiencias culinarias privadas e imborrables, adaptadas por completo a tu estilo: ya sea disfrutando de un chef y servicio privado en la intimidad de tu villa o a bordo de tu yate, o asegurándote el acceso a los restaurantes de alta calidad más exclusivos y codiciados del archipiélago. Cada plato es un viaje sensorial, un maridaje perfecto y un servicio impecable diseñado para alimentar el alma.',
@@ -936,7 +983,7 @@
         'nav.book':           'Book Now',
         'statement.eyebrow':  'Mallorca from within',
         'statement.body':     'Discover Mallorca through a unique and exclusive experience',
-        'contact.heading':    'Start building<br>your experience.',
+        'contact.heading':    'Start building\nyour experience.',
         'contact.para':       "Tell us what you have in mind and we'll take care of the rest. Mallorca is vast, but we already know every corner of it.",
         'svc.yacht':          'It is not just sailing; it is owning the horizon of the most beautiful islands in the Mediterranean. We place the most sophisticated superyachts at your disposal to discover the archipelago from its finest perspective. Feel the sun on your skin as you anchor in the turquoise waters of Formentera, watch the sunset silhouetted against Es Vedrà in Ibiza, or take refuge in the virgin, silent coves of Menorca. An expert crew that anticipates your every wish, turning the Balearic Sea into your private sanctuary of absolute freedom.',
         'svc.food':           'Luxury in the Balearic Islands is also to be savoured, fusing the Mediterranean essence with avant-garde haute cuisine. We design private, unforgettable culinary experiences fully tailored to your style — whether enjoying a private chef and service in the intimacy of your villa or on board your yacht, or securing access to the most exclusive and sought-after fine-dining restaurants in the archipelago. Every dish is a sensory journey, a perfect pairing, and impeccable service designed to nourish the soul.',
@@ -950,7 +997,7 @@
         'nav.book':           'Réserver',
         'statement.eyebrow':  "Majorque de l'intérieur",
         'statement.body':     'Découvrez Majorque à travers une expérience unique et exclusive',
-        'contact.heading':    'Commencez à bâtir<br>votre expérience.',
+        'contact.heading':    'Commencez à bâtir\nvotre expérience.',
         'contact.para':       "Dites-nous ce que vous avez en tête et nous nous occupons du reste. Majorque est grande, mais nous la connaissons déjà entièrement.",
         'svc.yacht':          "Ce n'est pas seulement naviguer ; c'est posséder l'horizon des plus belles îles de la Méditerranée. Nous mettons à votre disposition les superyachts les plus sophistiqués pour découvrir l'archipel sous son meilleur angle. C'est le soleil caressant votre peau pendant que vous mouillez dans les eaux turquoises de Formentera, le coucher de soleil se découpant sur la silhouette d'Es Vedrà à Ibiza, ou vous réfugier dans les criques vierges et silencieuses de Minorque. Un équipage expert qui anticipe chaque désir, transformant la mer Baléare en votre sanctuaire privé de liberté absolue.",
         'svc.food':           "Le luxe aux Îles Baléares se savoure aussi, en fusionnant l'essence méditerranéenne avec la haute cuisine d'avant-garde. Nous concevons des expériences culinaires privées et inoubliables, entièrement adaptées à votre style : que ce soit en profitant d'un chef et d'un service privé dans l'intimité de votre villa ou à bord de votre yacht, ou en vous assurant l'accès aux restaurants gastronomiques les plus exclusifs et convoités de l'archipel. Chaque plat est un voyage sensoriel, un accord parfait et un service irréprochable conçu pour nourrir l'âme.",
@@ -964,7 +1011,7 @@
         'nav.book':           'Buchen',
         'statement.eyebrow':  'Mallorca von innen',
         'statement.body':     'Entdecken Sie Mallorca durch ein einzigartiges und exklusives Erlebnis',
-        'contact.heading':    'Beginnen Sie, Ihr<br>Erlebnis zu gestalten.',
+        'contact.heading':    'Beginnen Sie, Ihr\nErlebnis zu gestalten.',
         'contact.para':       'Sagen Sie uns, was Sie vorhaben, und wir kümmern uns um den Rest. Mallorca ist groß, aber wir kennen es bereits in- und auswendig.',
         'svc.yacht':          'Es geht nicht nur ums Segeln; es geht darum, den Horizont der schönsten Inseln des Mittelmeers zu besitzen. Wir stellen Ihnen die anspruchsvollsten Superyachten zur Verfügung, um den Archipel von seiner besten Seite zu entdecken. Die Sonne auf Ihrer Haut, während Sie in den türkisfarbenen Gewässern von Formentera ankern, der Sonnenuntergang hinter der Silhouette von Es Vedrà auf Ibiza oder die Zuflucht in den unberührten, stillen Buchten Menorcas. Eine erfahrene Crew, die jeden Wunsch antizipiert und das Balearenmeer in Ihr privates Heiligtum absoluter Freiheit verwandelt.',
         'svc.food':           'Luxus auf den Balearischen Inseln lässt sich auch schmecken — die mediterrane Essenz verschmilzt mit der modernen Haute Cuisine. Wir gestalten private, unvergessliche Genusserlebnisse, die vollständig auf Ihren Stil zugeschnitten sind: ob mit einem Privatkoch und -service in der Intimität Ihrer Villa oder an Bord Ihrer Yacht, oder mit Zugang zu den exklusivsten und begehrtesten Gourmetrestaurants des Archipels. Jedes Gericht ist eine Sinnesreise, eine perfekte Paarung und ein tadelloser Service, der die Seele nährt.',
@@ -983,7 +1030,7 @@
       });
       document.querySelectorAll('[data-i18n-html]').forEach(el => {
         const v = t[el.dataset.i18nHtml];
-        if (v !== undefined) el.innerHTML = v;
+        if (v !== undefined) el.textContent = v;
       });
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
