@@ -1,9 +1,8 @@
 {
-  // Worker que sirve el sitio estático (carpeta ./public) y que SOLO se
-  // ejecuta para las rutas de video (run_worker_first) para responder a
-  // peticiones HTTP Range con 206 Partial Content. Esto es lo que necesita
-  // el scrubbing de video por scroll, que Cloudflare Static Assets no
-  // soporta por sí solo.
+  // El sitio estático se sirve desde ./public. El Worker SOLO se ejecuta
+  // para las rutas de video (run_worker_first), que se sirven desde el
+  // bucket R2 "bluelatitude" con soporte nativo de HTTP Range (206),
+  // necesario para el scrubbing de video por scroll.
   "name": "blue-latitude",
   "compatibility_date": "2026-06-01",
   "main": "worker.js",
@@ -11,5 +10,8 @@
     "directory": "./public",
     "binding": "ASSETS",
     "run_worker_first": ["/assets/videos/*"]
-  }
+  },
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "bluelatitude" }
+  ]
 }

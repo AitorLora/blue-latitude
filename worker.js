@@ -1,67 +1,66 @@
 /**
  * Blue Latitude — Worker
  *
- * Solo intercepta las rutas de video (configurado en wrangler.jsonc con
- * `run_worker_first: ["/assets/videos/*"]`). El resto del sitio lo sirve
- * el sistema de Static Assets de forma estática.
+ * Solo se ejecuta para las rutas de video (configurado en wrangler.jsonc
+ * con `run_worker_first: ["/assets/videos/*"]`). El resto del sitio lo
+ * sirve el sistema de Static Assets de forma estática.
  *
- * Motivo: Cloudflare Static Assets NO responde a peticiones HTTP Range
- * (devuelve 200 con el archivo completo y sin `Accept-Ranges`), lo que
- * impide el "seek" del <video> y rompe el scrubbing por scroll.
- * Aquí leemos el asset completo y devolvemos 206 Partial Content con
- * `Content-Range`, que es lo que el navegador necesita para hacer seek.
+ * Sirve los videos desde el bucket R2 "bluelatitude" (binding MEDIA).
+ * R2 soporta HTTP Range de forma nativa, así que el corte del rango se
+ * hace en origen (sin cargar el archivo entero en memoria). Esto da el
+ * 206 Partial Content que necesita el <video> para hacer "seek", que es
+ * lo que mueve el frame al hacer scroll (scrubbing).
+ *
+ * Mapa de rutas:  /assets/videos/<archivo>  ->  objeto R2 "<archivo>"
  */
 export default {
   async fetch(request, env) {
+    if (request.method !== 'GET' && request.method !== 'HEAD') {
+      return new Response('Method Not Allowed', { status: 405 });
+    }
+
     const url = new URL(request.url);
+    const key = decodeURIComponent(url.pathname.replace(/^\/assets\/videos\//, ''));
+    if (!key) return new Response('Not Found', { status: 404 });
 
-    // Pedimos el asset completo al sistema de Static Assets (devuelve 200).
-    const assetRes = await env.ASSETS.fetch(new Request(url.toString(), { method: 'GET' }));
-
-    if (!assetRes.ok) return assetRes; // 404, etc.
-
-    const contentType = assetRes.headers.get('Content-Type') || 'video/mp4';
-    const range = request.headers.get('Range');
-
-    // Sin cabecera Range: devolvemos el archivo entero, pero anunciando
-    // que aceptamos rangos (para que el navegador haga seek si lo necesita).
-    if (!range) {
-      const headers = new Headers(assetRes.headers);
-      headers.set('Accept-Ranges', 'bytes');
-      headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-      return new Response(assetRes.body, { status: 200, headers });
-    }
-
-    const buffer = await assetRes.arrayBuffer();
-    const total = buffer.byteLength;
-
-    const match = /bytes=(\d*)-(\d*)/.exec(range);
-    let start = match && match[1] !== '' ? parseInt(match[1], 10) : 0;
-    let end = match && match[2] !== '' ? parseInt(match[2], 10) : total - 1;
-
-    if (Number.isNaN(start)) start = 0;
-    if (Number.isNaN(end) || end >= total) end = total - 1;
-
-    // Rango inválido → 416.
-    if (start > end || start >= total) {
-      return new Response('Range Not Satisfiable', {
-        status: 416,
-        headers: { 'Content-Range': `bytes */${total}`, 'Accept-Ranges': 'bytes' },
-      });
-    }
-
-    const chunk = buffer.slice(start, end + 1);
-
-    return new Response(chunk, {
-      status: 206,
-      headers: {
-        'Content-Type': contentType,
-        'Accept-Ranges': 'bytes',
-        'Content-Range': `bytes ${start}-${end}/${total}`,
-        'Content-Length': String(chunk.byteLength),
-        'Cache-Control': 'public, max-age=31536000, immutable',
-        'X-Content-Type-Options': 'nosniff',
-      },
+    // Pasamos las cabeceras del request: R2 interpreta Range y onlyIf.
+    const object = await env.MEDIA.get(key, {
+      range: request.headers,
+      onlyIf: request.headers,
     });
+
+    if (object === null) {
+      return new Response('Not Found', { status: 404 });
+    }
+
+    const headers = new Headers();
+    object.writeHttpMetadata(headers); // Content-Type, etc. desde R2
+    headers.set('etag', object.httpEtag);
+    headers.set('Accept-Ranges', 'bytes');
+    headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+    headers.set('X-Content-Type-Options', 'nosniff');
+
+    // Petición condicional (If-None-Match / If-Modified-Since) sin cuerpo.
+    if (!('body' in object) || object.body === undefined) {
+      return new Response(null, { status: 304, headers });
+    }
+
+    // ¿Petición de rango? object.range describe el tramo servido.
+    const r = object.range;
+    if (request.headers.get('Range') && r) {
+      let offset = r.offset ?? 0;
+      let length = r.length ?? (object.size - offset);
+      if (r.suffix != null) {
+        offset = object.size - r.suffix;
+        length = r.suffix;
+      }
+      const end = offset + length - 1;
+      headers.set('Content-Range', `bytes ${offset}-${end}/${object.size}`);
+      headers.set('Content-Length', String(length));
+      return new Response(object.body, { status: 206, headers });
+    }
+
+    headers.set('Content-Length', String(object.size));
+    return new Response(object.body, { status: 200, headers });
   },
 };
