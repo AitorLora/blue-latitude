@@ -1,6 +1,10 @@
 .claude/
 Demo.mp4
 
+# Cloudflare / wrangler (caché local con info de cuenta)
+.wrangler/
+.dev.vars
+
 # Archivos internos / herramientas (no parte del proyecto del cliente)
 .agents/
 AGENTS.md

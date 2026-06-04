@@ -1,0 +1,15 @@
+{
+  // Worker que sirve el sitio estático (carpeta ./public) y que SOLO se
+  // ejecuta para las rutas de video (run_worker_first) para responder a
+  // peticiones HTTP Range con 206 Partial Content. Esto es lo que necesita
+  // el scrubbing de video por scroll, que Cloudflare Static Assets no
+  // soporta por sí solo.
+  "name": "blue-latitude",
+  "compatibility_date": "2026-06-01",
+  "main": "worker.js",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/assets/videos/*"]
+  }
+}
