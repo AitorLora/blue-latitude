@@ -773,7 +773,7 @@
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-bg"></div>
-    <video class="hero-video" poster="assets/hero/Poster_hero.png" src="assets/videos/FPV%20MALLORCA%201.mov" autoplay muted loop playsinline></video>
+    <video class="hero-video" poster="assets/hero/Poster_hero.png" autoplay muted loop playsinline preload="metadata"></video>
    
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -929,6 +929,16 @@
   </footer>
 
   <script>
+    // Hero video: versión ligera (1080p) en móvil, calidad completa (4K) en desktop.
+    (function() {
+      const hero = document.querySelector('.hero-video');
+      if (!hero) return;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      hero.src = isMobile ? 'assets/videos/hero-mobile.mp4' : 'assets/videos/hero.mp4';
+      hero.load();
+      hero.play().catch(() => {});
+    })();
+
     // Nav scroll
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
