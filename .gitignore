@@ -1,2 +1,9 @@
 .claude/
 Demo.mp4
+
+# Archivos internos / herramientas (no parte del proyecto del cliente)
+.agents/
+AGENTS.md
+informe.md
+__pycache__/
+*.pyc
